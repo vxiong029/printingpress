@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
-  };
+    email: '',
+    img_avatar: '',
+    blog_title: '',
+    is_featured: 'false'
+  }
 
   registerUser = (event) => {
     event.preventDefault();
@@ -16,10 +20,14 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          email: this.state.email,
+          img_avatar: this.state.img_avatar,
+          blog_title: this.state.blog_title,
+          is_featured: this.state.is_featured
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }
   } // end registerUser
 
@@ -40,6 +48,9 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
+        <p>
+          {JSON.stringify(this.state)}
+        </p>
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
@@ -65,6 +76,58 @@ class RegisterPage extends Component {
             </label>
           </div>
           <div>
+            <label htmlFor="email">
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleInputChangeFor('email')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="img_avatar">
+              Avatar Image URL:
+              <input
+                type="text"
+                name="img_avatar"
+                value={this.state.img_avatar}
+                onChange={this.handleInputChangeFor('img_avatar')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="blog_title">
+              Blog Title:
+              <input
+                type="text"
+                name="blog_title"
+                value={this.state.blog_title}
+                onChange={this.handleInputChangeFor('blog_title')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="is_featured">
+              Feature Your Blog?:
+              <input
+                type="radio"
+                name="is_featured"
+                value="true"
+                checked={this.state.is_featured === 'true'}
+                onChange={this.handleInputChangeFor('is_featured')}
+              /> Yes
+              <input
+                type="radio"
+                name="is_featured"
+                value="false"
+                checked={this.state.is_featured === 'false'}
+                onChange={this.handleInputChangeFor('is_featured')}
+              /> No
+            </label>
+          </div>
+          <div>
             <input
               className="register"
               type="submit"
@@ -77,7 +140,7 @@ class RegisterPage extends Component {
           <button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' }) }}
           >
             Login
           </button>
