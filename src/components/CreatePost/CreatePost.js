@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import './CreatePost.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
 // draft.js imports
-import { EditorState } from 'draft-js';
+import { 
+  EditorState, 
+  convertToRaw,
+  // convertFromRaw
+} from 'draft-js';
 // allows for plugins to work
 import Editor from 'draft-js-plugins-editor';
 // plugin imports
@@ -20,8 +24,7 @@ import {
   BlockquoteButton,
 } from 'draft-js-buttons';
 
-
-// objects can be passed in as arguments
+// plugins objects
 const focusPlugin = createFocusPlugin();
 const staticToolbarPlugin = createToolbarPlugin();
 const { Toolbar } = staticToolbarPlugin;
@@ -31,29 +34,37 @@ const plugins = [focusPlugin, staticToolbarPlugin];
 class CreatePost extends Component {
   // empty state of blog post
   state = {
-    title: '',
-    date: '',
+    newPost: {
+      title: '',
+      date: ''
+    },
     editorState: EditorState.createEmpty(),
   }
   // holds the post info
   handleInfoChange = propertyName => (event) => {
     this.setState({
-      [propertyName]: event.target.value,
+      newPost: {
+        ...this.state.newPost,
+        [propertyName]: event.target.value,
+      }
     });
   }
-  handleContentChange = editorState => {
-    this.setState({
+  handleContentChange = (editorState) => {
+    this.setState({ 
       editorState
-    })
+    });
   }
   // trigger saga post
   submitPost = () => {
-    console.log('in submitPost');
-
+    const content = convertToRaw(this.state.editorState.getCurrentContent());
+    
     this.props.dispatch({
       type: 'POST_BLOG',
-      payload: this.state
-    })
+      payload: {
+        blog_content: content,
+        blog_details: this.state.newPost
+      }
+    });
   }
   // focus on an object
   focus = () => {

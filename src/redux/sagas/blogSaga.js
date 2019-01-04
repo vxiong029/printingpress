@@ -5,7 +5,7 @@ import axios from 'axios';
 function* getBlogPosts() {
   try {
     console.log('getBlogPosts triggered');
-    const blogPost = yield call(axios.get, '/api/blog');
+    const blogPost = yield call(axios.get, `/api/blog`);
     yield put({
       type: 'FETCH_BLOG_POSTS',
       payload: blogPost.data

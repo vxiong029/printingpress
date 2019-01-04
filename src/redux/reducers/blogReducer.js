@@ -1,14 +1,10 @@
-import { combineReducers } from 'redux';
-
-const blogPosts = (state = {}, action) => {
+const blogPosts = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_BLOG_POSTS':
-      return { ...state };
+      return action.payload;
     default:
       return state;
   }
 };
 
-export default combineReducers({
-  blogPosts
-});
+export default blogPosts;

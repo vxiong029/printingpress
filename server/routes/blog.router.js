@@ -7,7 +7,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * Get all of the blog posts
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryString = `SELECT * FROM "blog_post";`;
+  const queryString = `SELECT to_char("date", 'Mon DD, YYYY') 
+                    AS "date", "title", "blog_content" FROM "blog_posts";`;
   pool.query(queryString)
     .then((result) => {
       res.send(result.rows);
@@ -22,10 +23,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/post_blog', rejectUnauthenticated, (req, res) => {
   console.log('in post blog', req.user);
+  console.log('POST BLOG_CONTENT:', req.body);
+  let blog_content = req.body.blog_content;
+  let blog_details = req.body.blog_details;
 
-  let queryText = `INSERT INTO "blog_posts" ("title", "date", "post_text", "person_id")
+  let queryText = `INSERT INTO "blog_posts" ("title", "date", "blog_content", "person_id")
         VALUES ($1, $2, $3, $4);`;
-  pool.query(queryText, [req.body.title, req.body.date, req.body.editorState, req.user.id])
+  pool.query(queryText, [blog_details.title, blog_details.date, blog_content, req.user.id])
     .then(result => {
       res.sendStatus(201);
     }).catch(error => {
