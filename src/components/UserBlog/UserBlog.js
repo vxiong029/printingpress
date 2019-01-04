@@ -23,7 +23,8 @@ class UserBlog extends Component {
               <div key={post.id}>
                 <h2>{post.title}</h2>
                 <p>{post.date}</p>
-                <p>Author: {post.person_id}</p>
+                <p>Category: {post.name}</p>
+                <p>Author: {post.username}</p>
                 <div 
                   dangerouslySetInnerHTML={
                     { __html: this.convertContent(post.blog_content) }}> 

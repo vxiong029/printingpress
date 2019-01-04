@@ -7,8 +7,6 @@ class RegisterPage extends Component {
     password: '',
     email: '',
     img_avatar: '',
-    blog_title: '',
-    is_featured: 'false'
   }
 
   registerUser = (event) => {
@@ -22,8 +20,6 @@ class RegisterPage extends Component {
           password: this.state.password,
           email: this.state.email,
           img_avatar: this.state.img_avatar,
-          blog_title: this.state.blog_title,
-          is_featured: this.state.is_featured
         },
       });
     } else {
@@ -95,36 +91,6 @@ class RegisterPage extends Component {
                 value={this.state.img_avatar}
                 onChange={this.handleInputChangeFor('img_avatar')}
               />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="blog_title">
-              Blog Title:
-              <input
-                type="text"
-                name="blog_title"
-                value={this.state.blog_title}
-                onChange={this.handleInputChangeFor('blog_title')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="is_featured">
-              Feature Your Blog?:
-              <input
-                type="radio"
-                name="is_featured"
-                value="true"
-                checked={this.state.is_featured === 'true'}
-                onChange={this.handleInputChangeFor('is_featured')}
-              /> Yes
-              <input
-                type="radio"
-                name="is_featured"
-                value="false"
-                checked={this.state.is_featured === 'false'}
-                onChange={this.handleInputChangeFor('is_featured')}
-              /> No
             </label>
           </div>
           <div>

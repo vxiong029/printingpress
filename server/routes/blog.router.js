@@ -7,8 +7,12 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * Get all of the blog posts
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryString = `SELECT to_char("date", 'Mon DD, YYYY') 
-                    AS "date", "title", "blog_content" FROM "blog_posts";`;
+  const queryString = `SELECT "person".username, "blog_posts".id, "title", 
+                    to_char("date", 'Mon DD, YYYY') AS "date", 
+                    "category".name, "blog_content" FROM "blog_posts" 
+                    JOIN "person" ON "blog_posts".person_id = "person".id 
+                    JOIN "category" ON "blog_posts".category_id = "category".id 
+                    ORDER BY "id" DESC;`;
   pool.query(queryString)
     .then((result) => {
       res.send(result.rows);
@@ -23,13 +27,15 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/post_blog', rejectUnauthenticated, (req, res) => {
   console.log('in post blog', req.user);
-  console.log('POST BLOG_CONTENT:', req.body);
+  // hold req.body in variable to shorten query insert
   let blog_content = req.body.blog_content;
   let blog_details = req.body.blog_details;
 
-  let queryText = `INSERT INTO "blog_posts" ("title", "date", "blog_content", "person_id")
-        VALUES ($1, $2, $3, $4);`;
-  pool.query(queryText, [blog_details.title, blog_details.date, blog_content, req.user.id])
+  let queryText = `INSERT INTO "blog_posts" ("title", "date", "category_id", 
+                "blog_content", "person_id")
+                VALUES ($1, $2, $3, $4, $5);`;
+  pool.query(queryText, [blog_details.title, blog_details.date, 
+              blog_details.category_id, blog_content, req.user.id])
     .then(result => {
       res.sendStatus(201);
     }).catch(error => {

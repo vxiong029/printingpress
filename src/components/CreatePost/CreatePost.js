@@ -28,7 +28,6 @@ import {
 const focusPlugin = createFocusPlugin();
 const staticToolbarPlugin = createToolbarPlugin();
 const { Toolbar } = staticToolbarPlugin;
-
 const plugins = [focusPlugin, staticToolbarPlugin];
 
 class CreatePost extends Component {
@@ -36,12 +35,13 @@ class CreatePost extends Component {
   state = {
     newPost: {
       title: '',
-      date: ''
+      date: '',
+      category_id: 1,
     },
     editorState: EditorState.createEmpty(),
   }
   // holds the post info
-  handleInfoChange = propertyName => (event) => {
+  handleDetailChange = propertyName => (event) => {
     this.setState({
       newPost: {
         ...this.state.newPost,
@@ -74,17 +74,25 @@ class CreatePost extends Component {
     return (
       <div>
         <h1>Create New Post</h1>
+        <pre>{JSON.stringify(this.state.newPost)}</pre>
         <div className="toolbar">
           <input
             type="text"
             placeholder="Title"
-            onChange={this.handleInfoChange('title')}
+            onChange={this.handleDetailChange('title')}
           />
           <input
             type="date"
             placeholder="Date"
-            onChange={this.handleInfoChange('date')}
+            onChange={this.handleDetailChange('date')}
           />
+          <select onChange={this.handleDetailChange('category_id')}>
+            <option value={1}>React</option>
+            <option value={2}>CSS</option>
+            <option value={3}>HTML</option>
+            <option value={4}>Javascript</option>
+            <option value={5}>Technology</option>
+          </select>
           <Toolbar>
             {
               // may be use React.Fragment instead of div to improve perfomance after React 16
