@@ -20,7 +20,7 @@ router.post('/register', (req, res, next) => {
   const quertyText = `WITH "person" AS (INSERT INTO "person"
                         ("username", "password", "email", "img_avatar")
                         VALUES ($1, $2, $3, $4) RETURNING id)
-                        INSERT INTO blog ("person_id", "blog_title", "is_featured")
+                        INSERT INTO "blog" ("person_id", "blog_title", "is_featured")
                         SELECT id, $5, $6
                         FROM "person";`;
   // values from registration form 

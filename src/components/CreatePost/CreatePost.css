@@ -11,6 +11,7 @@
   width: 500px;
   height: 500px;
   overflow: scroll;
+  font-family: century;
 }
 
 .editor :global(.public-DraftEditor-content) {
