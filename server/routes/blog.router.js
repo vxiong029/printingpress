@@ -25,17 +25,17 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * Add a blog post for the logged in user 
  */
-router.post('/post_blog', rejectUnauthenticated, (req, res) => {
-  console.log('in post blog', req.user);
+router.post('/post', rejectUnauthenticated, (req, res) => {
+  console.log('in post ', req.user);
   // hold req.body in variable to shorten query insert
-  let blog_content = req.body.blog_content;
-  let blog_details = req.body.blog_details;
+  let post_content = req.body.post_content;
+  let post_details = req.body.post_details;
 
   let queryText = `INSERT INTO "blog_posts" ("title", "date", "category_id", 
                 "blog_content", "person_id")
                 VALUES ($1, $2, $3, $4, $5);`;
-  pool.query(queryText, [blog_details.title, blog_details.date, 
-              blog_details.category_id, blog_content, req.user.id])
+  pool.query(queryText, [post_details.title, post_details.date, 
+              post_details.category_id, post_content, req.user.id])
     .then(result => {
       res.sendStatus(201);
     }).catch(error => {
@@ -48,18 +48,17 @@ router.post('/post_blog', rejectUnauthenticated, (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-// router.delete('/:id', (req, res) => {
-//   queryString = `DELETE FROM "item" WHERE "id" = $1;`;
-//   let id = req.params.id
-//   pool.query(queryString, [id])
-//     .then(result => {
-//       res.sendStatus(201);
-//     }).catch(error => {
-//       console.log('error in delete item:', error);
-//       res.sendStatus(500);
-//     })
-
-// });
+router.delete('/:id', (req, res) => {
+  queryString = `DELETE FROM "blog_post" WHERE "id" = $1;`;
+  let id = req.params.id
+  pool.query(queryString, [id])
+    .then(result => {
+      res.sendStatus(201);
+    }).catch(error => {
+      console.log('error in delete item:', error);
+      res.sendStatus(500);
+    })
+});
 
 /**
  * Return all users along with the total number of items 

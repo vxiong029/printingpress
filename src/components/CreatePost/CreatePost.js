@@ -59,10 +59,10 @@ class CreatePost extends Component {
     const content = convertToRaw(this.state.editorState.getCurrentContent());
     
     this.props.dispatch({
-      type: 'POST_BLOG',
+      type: 'POST_ARTICLE',
       payload: {
-        blog_content: content,
-        blog_details: this.state.newPost
+        post_content: content,
+        post_details: this.state.newPost
       }
     });
   }

@@ -16,8 +16,8 @@ const Nav = (props) => (
         and call this link 'Login / Register' if they are not */}
         {props.user.id ? 'User Home' : 'Login / Register'}
       </Link>
-      <Link className="nav-link" to="/blog">
-        View My Blog
+      <Link className="nav-link" to="/articles">
+        View Printing Press Articles
       </Link>
       {props.user.id && (
         <>
