@@ -15,6 +15,11 @@ class UserBlog extends Component {
   }
   handleDelete = (id) => {
     console.log('in handle delete', id);
+
+    this.props.dispatch({
+      type: 'DELETE_ARTICLE',
+      payload: id
+    })
   }
   handleEdit = (id) => {
     console.log('in handle edit', id);

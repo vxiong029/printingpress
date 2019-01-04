@@ -15,8 +15,8 @@ function* getArticlePosts() {
   }
 }
 
-// create blog post saga
-function* createArticlePost(action) {
+// create article post saga
+function* createArticle(action) {
   try {
     // log trigger
     console.log('createPost triggered');
@@ -32,9 +32,23 @@ function* createArticlePost(action) {
   }
 }
 
+// delete article saga
+function* deleteArticle(action) {
+  try{
+    console.log('deleteArticle triggered', action.payload);
+    yield call(axios.delete, `/api/blog/${action.payload}`);
+    yield put({
+      type: 'GET_ARTICLE_POSTS'
+    });
+  } catch (error) {
+    console.log('Error with user delete article:', error);
+  }
+}
+
 function* blogSaga() {
   yield takeLatest('GET_ARTICLE_POSTS', getArticlePosts);
-  yield takeLatest('POST_ARTICLE', createArticlePost);
+  yield takeLatest('POST_ARTICLE', createArticle);
+  yield takeLatest('DELETE_ARTICLE', deleteArticle);
 }
 
 export default blogSaga;
