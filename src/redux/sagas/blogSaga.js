@@ -2,14 +2,14 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 // get blog post saga
-function* getArticlePosts() {
+function* getAllArticlePosts() {
   try {
     console.log('getArticlePosts triggered');
     const blogPost = yield call(axios.get, `/api/blog`);
     yield put({
-      type: 'FETCH_ARTICLE_POSTS',
+      type: 'FETCH_ALL_ARTICLE_POSTS',
       payload: blogPost.data
-    })
+    });
   } catch (error) {
     console.log('Error with user get blog posts');
   }
@@ -25,10 +25,26 @@ function* createArticle(action) {
     yield call(axios.post, '/api/blog/post', action.payload);
     // dispatch to getBlogPosts saga in order to update VIEW
     yield put({
-      type: 'GET_ARTICLE_POSTS'
+      type: 'GET_ALL_ARTICLE_POSTS'
     });
   } catch (error) {
     console.log('Error with user create post:', error);
+  }
+}
+
+// get ONE article based on id
+function* readArticle(action) {
+  try {
+    console.log('readArticle triggered');
+    // make call to blog route based on id
+    const readArticle = yield call(axios.get, `/api/blog/${action.payload}`);
+    // dispatch to readArticle reducer
+    yield put({
+      type: 'FETCH_ARTICLE_POST',
+      payload: readArticle.data
+    });
+  } catch (error) {
+    console.log('Error with user read article:', error);
   }
 }
 
@@ -38,17 +54,28 @@ function* deleteArticle(action) {
     console.log('deleteArticle triggered', action.payload);
     yield call(axios.delete, `/api/blog/${action.payload}`);
     yield put({
-      type: 'GET_ARTICLE_POSTS'
+      type: 'GET_ALL_ARTICLE_POSTS'
     });
   } catch (error) {
     console.log('Error with user delete article:', error);
   }
 }
 
+// edit article saga
+function* editArticle(action) {
+  try{
+    console.log('editArticle triggered', action.payload);
+  } catch (error) {
+    console.log('Error with user edit article:', error);
+  }
+}
+
 function* blogSaga() {
-  yield takeLatest('GET_ARTICLE_POSTS', getArticlePosts);
+  yield takeLatest('GET_ALL_ARTICLE_POSTS', getAllArticlePosts);
   yield takeLatest('POST_ARTICLE', createArticle);
   yield takeLatest('DELETE_ARTICLE', deleteArticle);
+  yield takeLatest('EDIT_ARTICLE', editArticle);
+  yield takeLatest('READ_ARTICLE', readArticle);
 }
 
 export default blogSaga;

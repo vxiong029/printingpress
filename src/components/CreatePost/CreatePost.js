@@ -34,6 +34,7 @@ class CreatePost extends Component {
   // empty state of blog post
   state = {
     newPost: {
+      img_header: '',
       title: '',
       date: '',
       category_id: 1,
@@ -76,6 +77,11 @@ class CreatePost extends Component {
         <h1>Create New Post</h1>
         <pre>{JSON.stringify(this.state.newPost)}</pre>
         <div className="toolbar">
+          <input
+            type="url"
+            placeholder="Article Image"
+            onChange={this.handleDetailChange('img_header')}
+          />
           <input
             type="text"
             placeholder="Title"

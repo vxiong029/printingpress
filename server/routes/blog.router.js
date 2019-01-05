@@ -9,7 +9,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT "person".username, "blog_posts".id, "title", 
                     to_char("date", 'Mon DD, YYYY') AS "date", 
-                    "category".name, "blog_content" FROM "blog_posts" 
+                    "category".name, "img_header" FROM "blog_posts" 
                     JOIN "person" ON "blog_posts".person_id = "person".id 
                     JOIN "category" ON "blog_posts".category_id = "category".id 
                     ORDER BY "id" DESC;`;
@@ -23,19 +23,48 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 /**
+ * Get ONE blog post based on id
+ */
+router.get('/:id', (req, res) => {
+  const queryString = `SELECT "person".full_name, "blog_posts".id, "title", 
+                    to_char("date", 'Mon DD, YYYY') AS "date", 
+                    "category".name, "img_header", "blog_content" FROM "blog_posts" 
+                    JOIN "person" ON "blog_posts".person_id = "person".id 
+                    JOIN "category" ON "blog_posts".category_id = "category".id 
+                    WHERE "blog_posts".id = $1;`;
+  let id = req.params.id;
+  console.log('route get one article', id);
+
+  pool.query(queryString, [id])
+    .then((result) => { 
+      res.send(result.rows);
+      console.log('in get ONE blog post:', result.rows);
+    })
+    .catch((err) => {
+      console.log('Error completing SELECT get query', err);
+      res.sendStatus(500);
+    });
+});
+
+/**
  * Add a blog post for the logged in user 
  */
 router.post('/post', rejectUnauthenticated, (req, res) => {
   console.log('in post ', req.user);
-  // hold req.body in variable to shorten query insert
-  let post_content = req.body.post_content;
-  let post_details = req.body.post_details;
+  // values of input field in createPost
+  let queryValues = [
+    req.body.post_details.img_header,
+    req.body.post_details.title,
+    req.body.post_details.date,
+    req.body.post_details.category_id,
+    req.body.post_content,
+    req.user.id
+  ];
 
-  let queryText = `INSERT INTO "blog_posts" ("title", "date", "category_id", 
-                "blog_content", "person_id")
-                VALUES ($1, $2, $3, $4, $5);`;
-  pool.query(queryText, [post_details.title, post_details.date, 
-              post_details.category_id, post_content, req.user.id])
+  let queryString = `INSERT INTO "blog_posts" ("img_header", "title", 
+                  "date", "category_id", "blog_content", "person_id")
+                  VALUES ($1, $2, $3, $4, $5, $6);`;
+  pool.query(queryString, queryValues)
     .then(result => {
       res.sendStatus(201);
     }).catch(error => {
@@ -44,13 +73,12 @@ router.post('/post', rejectUnauthenticated, (req, res) => {
     })
 });
 
-
 /**
  * Delete an item if it's something the logged in user added
  */
 router.delete('/:id', (req, res) => {
-  queryString = `DELETE FROM "blog_posts" WHERE "id" = $1;`;
-  let id = req.params.id
+  const queryString = `DELETE FROM "blog_posts" WHERE "id" = $1;`;
+  let id = req.params.id;
   console.log('route delete', id);
   
   pool.query(queryString, [id])
@@ -63,21 +91,12 @@ router.delete('/:id', (req, res) => {
 });
 
 /**
- * Return all users along with the total number of items 
- * they have added to the shelf
+ * Update an item if it's something the logged in user added
  */
-// router.get('/count', (req, res) => {
-//   queryString = `SELECT "person".username, COUNT("item".person_id) FROM "person"
-//     LEFT JOIN "item" ON "person".id = "item".person_id 
-//     GROUP BY "person".id 
-//     ORDER BY "person".id;`
-//   pool.query(queryString).then(results => {
-//     res.send(results.rows)
-//   }).catch(error => {
-//     res.sendStatus(500)
-//     console.log('error in get count', error);
-
-//   })
-// });
+router.put('/:id', (req, res) => {
+  const queryString = ``;
+  let id = req.params.id;
+  console.log('route edit/put', id);
+});
 
 module.exports = router;

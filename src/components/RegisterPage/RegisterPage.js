@@ -5,8 +5,10 @@ class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    full_name: '',
     email: '',
     img_avatar: '',
+    description: '',
   }
 
   registerUser = (event) => {
@@ -18,8 +20,10 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          full_name: this.state.full_name,
           email: this.state.email,
           img_avatar: this.state.img_avatar,
+          description: this.state.description,
         },
       });
     } else {
@@ -72,6 +76,17 @@ class RegisterPage extends Component {
             </label>
           </div>
           <div>
+            <label htmlFor="full name">
+              Full Name:
+              <input
+                type="text"
+                name="full name"
+                value={this.state.full_name}
+                onChange={this.handleInputChangeFor('full_name')}
+              />
+            </label>
+          </div>
+          <div>
             <label htmlFor="email">
               Email:
               <input
@@ -90,6 +105,17 @@ class RegisterPage extends Component {
                 name="img_avatar"
                 value={this.state.img_avatar}
                 onChange={this.handleInputChangeFor('img_avatar')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="description">
+              About Me:
+              <input
+                type="text"
+                name="description"
+                value={this.state.description}
+                onChange={this.handleInputChangeFor('description')}
               />
             </label>
           </div>

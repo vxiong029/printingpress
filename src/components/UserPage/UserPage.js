@@ -8,7 +8,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 const UserPage = (props) => (
   <div>
     <h1 id="welcome">
-      Welcome, {props.user.username}!
+      Welcome, {props.user.full_name}!
     </h1>
     <img
       src={props.user.img_avatar}

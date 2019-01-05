@@ -17,15 +17,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
   // query text insert into 2 tables
-  const quertyText = `INSERT INTO "person"
-                      ("username", "password", "email", "img_avatar")
-                      VALUES ($1, $2, $3, $4) RETURNING id`;
+  const quertyText = `WITH "person" AS (INSERT INTO "person"
+                  ("username", "password", "full_name", 
+                  "email", "img_avatar", "description")
+                  VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id")
+                  INSERT INTO "blog" ("person_id")
+                  SELECT "id" FROM "person";`;
   // values from registration form 
   const queryValues = [
     req.body.username,
     encryptLib.encryptPassword(req.body.password),
+    req.body.full_name,
     req.body.email,
     req.body.img_avatar,
+    req.body.description
   ];
   // send querytext and values to DB
   pool.query(quertyText, queryValues)
