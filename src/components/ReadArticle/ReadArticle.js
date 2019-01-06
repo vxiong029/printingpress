@@ -43,6 +43,12 @@ class ReadArticle extends Component {
               ></img>
               <h1>{article.title}</h1>
               <h4>Author: {article.full_name}</h4>
+              <p>{article.description}</p>
+              {this.props.user.id && (
+                <>
+                  <button onClick={() => this.handleFollow(this.props.user.id)}>Follow</button>
+                </>
+              )}
               <p>Date: {article.date} / Category: {article.name}</p>
               <div dangerouslySetInnerHTML={{ __html: this.convertContent(article.blog_content) } } >
               </div>

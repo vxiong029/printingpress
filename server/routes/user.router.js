@@ -10,6 +10,7 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
+  console.log('in user router:', req.user);
 });
 
 // Handles POST request with new user data
@@ -17,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
   // query text insert into 2 tables
-  const quertyText = `WITH "person" AS (INSERT INTO "person"
+  const queryString = `WITH "person" AS (INSERT INTO "person"
                   ("username", "password", "full_name", 
                   "email", "img_avatar", "description")
                   VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id")
@@ -33,7 +34,7 @@ router.post('/register', (req, res, next) => {
     req.body.description
   ];
   // send querytext and values to DB
-  pool.query(quertyText, queryValues)
+  pool.query(queryString, queryValues)
     .then(() => { res.sendStatus(201); })
     .catch((err) => { next(err); });
 });

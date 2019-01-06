@@ -16,8 +16,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool.query(queryString)
     .then((result) => {
       res.send(result.rows);
-    }).catch(error => {
-      console.log(error);
+    }).catch(err => {
+      console.log(err);
       res.sendStatus(500);
     });
 });
@@ -26,14 +26,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * Get ONE blog post based on id
  */
 router.get('/:id', (req, res) => {
-  const queryString = `SELECT "person".full_name, "blog_posts".id, "title", 
-                    to_char("date", 'Mon DD, YYYY') AS "date", 
+  const queryString = `SELECT "blog_posts".id, "person".full_name, "person".description,
+                    "blog".id AS "blog_id", "title", to_char("date", 'Mon DD, YYYY') AS "date", 
                     "category".name, "img_header", "blog_content" FROM "blog_posts" 
                     JOIN "person" ON "blog_posts".person_id = "person".id 
                     JOIN "category" ON "blog_posts".category_id = "category".id 
+                    JOIN "blog" ON "blog".id = "person".id
                     WHERE "blog_posts".id = $1;`;
   let id = req.params.id;
-  console.log('route get one article', id);
 
   pool.query(queryString, [id])
     .then((result) => { 
@@ -67,8 +67,8 @@ router.post('/post', rejectUnauthenticated, (req, res) => {
   pool.query(queryString, queryValues)
     .then(result => {
       res.sendStatus(201);
-    }).catch(error => {
-      console.log('error in post blog post:', error);
+    }).catch(err => {
+      console.log('error in post blog post:', err);
       res.sendStatus(500);
     })
 });
@@ -84,8 +84,8 @@ router.delete('/:id', (req, res) => {
   pool.query(queryString, [id])
     .then(result => {
       res.sendStatus(201);
-    }).catch(error => {
-      console.log('error in delete:', error);
+    }).catch(err => {
+      console.log('error in delete:', err);
       res.sendStatus(500);
     })
 });
