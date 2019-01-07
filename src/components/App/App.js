@@ -22,9 +22,14 @@ import ReadArticle from '../ReadArticle/ReadArticle';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' })
+    this.props.dispatch({ type: 'FETCH_USER' });
   }
-
+  // loadSubscriptionFeed() {
+  //   this.props.dispatch({
+  //     type: 'GET_SUBSCRIPTION_FEED',
+  //     payload: this.props.user.id
+  //   })
+  // }
   render() {
     return (
       <Router>
@@ -71,4 +76,8 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({
+  user: state.user,
+})
+
+export default connect(mapStateToProps)(App);

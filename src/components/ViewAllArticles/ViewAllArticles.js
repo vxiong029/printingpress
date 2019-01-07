@@ -28,16 +28,17 @@ class ViewAllArticles extends Component {
             return (
               <div key={post.id}>
                 <h2>{post.title}</h2>
-                <p><img 
-                  alt={post.title}
-                  src={post.img_header} 
-                  width="100" 
-                  height="100"
-                ></img>
+                <p>
+                  <img 
+                    alt={post.title}
+                    src={post.img_header} 
+                    width="100" 
+                    height="100"
+                  />
                 </p>
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
-                <p>Author: {post.username}</p>
+                <p>Author: {post.full_name}</p>
                 <p><button onClick={() => this.handleRead(post.id)}>Read More...</button></p>
               </div>
             )

@@ -13,6 +13,8 @@ class ReadArticle extends Component {
       type: 'DELETE_ARTICLE',
       payload: id
     })
+    // push to view all article page
+    this.props.history.push('/articles');
   }
   // edit button handle click
   handleEdit = (id) => {
@@ -23,13 +25,28 @@ class ReadArticle extends Component {
       payload: id
     })
   }
+  // follow button handle click
+  handleFollow = (id) => {
+    // post
+    this.props.dispatch({
+      type: 'FOLLOW_USER',
+      payload: {id, active: 'true'}
+    })
+  }
+  // unfollow button handleclick
+  handleUnfollow = (id) => {
+    this.props.dispatch({
+      type: 'UNFOLLOW_USER',
+      payload: id
+    })
+  }
   // convert draft.js object to HTML
   convertContent = (text) => {
     return stateToHTML(convertFromRaw(JSON.parse(text)));
   }
   render() {
-    console.log('in readArticle.js', this.props.readArticle);
-
+    console.log('in readArticle.js subscription feed:', this.props.subscription);
+    
     return (
       <div>
         {this.props.readArticle.map(article => {
@@ -40,15 +57,12 @@ class ReadArticle extends Component {
                 src={article.img_header}
                 width="500"
                 height="500"
-              ></img>
+              />
               <h1>{article.title}</h1>
               <h4>Author: {article.full_name}</h4>
               <p>{article.description}</p>
-              {this.props.user.id && (
-                <>
-                  <button onClick={() => this.handleFollow(this.props.user.id)}>Follow</button>
-                </>
-              )}
+              <button onClick={() => this.handleUnfollow(article.blog_id)}>Unfollow</button>
+              <button onClick={() => this.handleFollow(article.blog_id)}>Follow</button>
               <p>Date: {article.date} / Category: {article.name}</p>
               <div dangerouslySetInnerHTML={{ __html: this.convertContent(article.blog_content) } } >
               </div>
@@ -69,6 +83,7 @@ class ReadArticle extends Component {
 const mapStateToProps = state => ({
   readArticle: state.readArticle,
   user: state.user,
+  subscription: state.subscription,
 })
 
 export default connect(mapStateToProps)(ReadArticle);

@@ -15,6 +15,22 @@ function* getAllArticlePosts() {
   }
 }
 
+// get ONE article based on id
+function* readArticle(action) {
+  try {
+    console.log('readArticle triggered');
+    // make call to blog route based on id
+    const readArticle = yield call(axios.get, `/api/blog/${action.payload}`);
+    // dispatch to readArticle reducer
+    yield put({
+      type: 'FETCH_ARTICLE_POST',
+      payload: readArticle.data
+    });
+  } catch (error) {
+    console.log('Error with user read article:', error);
+  }
+}
+
 // create article post saga
 function* createArticle(action) {
   try {
@@ -29,22 +45,6 @@ function* createArticle(action) {
     });
   } catch (error) {
     console.log('Error with user create post:', error);
-  }
-}
-
-// get ONE article based on id
-function* readArticle(action) {
-  try {
-    console.log('readArticle triggered');
-    // make call to blog route based on id
-    const readArticle = yield call(axios.get, `/api/blog/${action.payload}`);
-    // dispatch to readArticle reducer
-    yield put({
-      type: 'FETCH_ARTICLE_POST',
-      payload: readArticle.data
-    });
-  } catch (error) {
-    console.log('Error with user read article:', error);
   }
 }
 

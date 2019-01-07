@@ -7,7 +7,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * Get all of the blog posts
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryString = `SELECT "person".username, "blog_posts".id, "title", 
+  const queryString = `SELECT "person".full_name, "blog_posts".id, "title", 
                     to_char("date", 'Mon DD, YYYY') AS "date", 
                     "category".name, "img_header" FROM "blog_posts" 
                     JOIN "person" ON "blog_posts".person_id = "person".id 
@@ -38,7 +38,6 @@ router.get('/:id', (req, res) => {
   pool.query(queryString, [id])
     .then((result) => { 
       res.send(result.rows);
-      console.log('in get ONE blog post:', result.rows);
     })
     .catch((err) => {
       console.log('Error completing SELECT get query', err);
@@ -50,7 +49,7 @@ router.get('/:id', (req, res) => {
  * Add a blog post for the logged in user 
  */
 router.post('/post', rejectUnauthenticated, (req, res) => {
-  console.log('in post ', req.user);
+  console.log('in blog post');
   // values of input field in createPost
   let queryValues = [
     req.body.post_details.img_header,
