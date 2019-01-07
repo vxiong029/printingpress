@@ -2,10 +2,10 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 // get subscription feed
-function* getSubscription(action) {
+function* getSubscription() {
   try {
-    console.log('getSubscription feed by user id:', action.payload);
-    const subFeed = yield call(axios.get, `/api/subscription/${action.payload}`);
+    console.log('getSubscription feed by user id:');
+    const subFeed = yield call(axios.get, `/api/subscription`);
     yield put({
       type: 'FETCH_SUBSCRIPTION_FEED',
       payload: subFeed.data
@@ -21,7 +21,7 @@ function* followUser(action) {
     console.log('followUser triggered (blog_id):');
     yield call(axios.post, `/api/subscription`, action.payload);
     yield put({
-      type: 'FETCH_SUBSCRIPTION_FEED',
+      type: 'GET_SUBSCRIPTION_FEED',
     });
   } catch (error) {
     console.log('Error with followUser saga', error);
@@ -34,7 +34,7 @@ function* unfollowUser(action) {
     console.log('unfollowUser triggered', action.payload);
     yield call(axios.delete, `/api/subscription/${action.payload}`);
     yield put({
-      type: 'FETCH_SUBSCRIPTION_FEED'
+      type: 'GET_SUBSCRIPTION_FEED',
     });
   } catch (error) {
     console.log('Error with unfollowUser saga', error); 

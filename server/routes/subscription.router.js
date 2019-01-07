@@ -6,7 +6,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * Get subscription feed based on user id
  */
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
   const queryString = `SELECT "subscription_feed".id, "subscription_feed".person_id, 
                     "subscription_feed".blog_id AS "sub_blog_id", 
                     "blog".id AS "blog_id", "blog".person_id 
@@ -15,7 +15,7 @@ router.get('/:id', (req, res) => {
                     JOIN "blog" ON "blog".id = "subscription_feed".blog_id 
                     JOIN "person" ON "person".id = "blog".person_id 
                     WHERE "subscription_feed".person_id = $1;`;
-  let id = req.params.id;
+  let id = req.user.id;
 
   pool.query(queryString, [id])
     .then((result) => {
@@ -31,17 +31,18 @@ router.get('/:id', (req, res) => {
  * Follow a user - post into subscrition_feed database table
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('in subscription post', req.body);
+  console.log('in subscription post blog_id', req.body.id);
+  console.log('in subscription post user_id', req.user.id);
+  
   // values of input field in createPost
   let queryValues = [
     req.body.id,
-    req.user.id,
-    req.body.active,
+    req.user.id
   ];
 
   let queryString = `INSERT INTO "subscription_feed" 
-                  ("blog_id", "person_id", "active") 
-                  VALUES ($1, $2, $3);`;
+                  ("blog_id", "person_id") 
+                  VALUES ($1, $2);`;
   pool.query(queryString, queryValues)
     .then(result => {
       res.sendStatus(201);

@@ -6,11 +6,12 @@ class UserPage extends Component {
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_SUBSCRIPTION_FEED',
-      payload: this.props.user.id
     })
   }
   // unfollow button handleclick
   handleUnfollow = (id) => {
+    console.log('sub_blog_id', id);
+    
     this.props.dispatch({
       type: 'UNFOLLOW_USER',
       payload: id

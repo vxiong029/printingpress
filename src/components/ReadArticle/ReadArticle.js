@@ -30,14 +30,14 @@ class ReadArticle extends Component {
     // post
     this.props.dispatch({
       type: 'FOLLOW_USER',
-      payload: {id, active: 'true'}
+      payload: {id}
     })
   }
   // unfollow button handleclick
   handleUnfollow = (id) => {
     this.props.dispatch({
       type: 'UNFOLLOW_USER',
-      payload: id
+      payload: {id}
     })
   }
   // convert draft.js object to HTML
