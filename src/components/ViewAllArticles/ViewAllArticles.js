@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// router imports
+import { Link } from 'react-router-dom';
+// component imports
+import ReadMoreButton from '../ReadMoreButton/ReadMoreButton';
 
 class ViewAllArticles extends Component {
   // load all articles 
@@ -9,16 +13,16 @@ class ViewAllArticles extends Component {
     })
   }
   // read more button handle click
-  handleRead = (id) => {
-    console.log('in handle read', id);
-    // dispatch to blogSaga
-    this.props.dispatch({
-      type: 'READ_ARTICLE',
-      payload: id
-    })
-    // push to article page
-    this.props.history.push('/readArticle');
-  }
+  // handleRead = (id) => {
+  //   console.log('in handle read', id);
+  //   // dispatch to blogSaga
+  //   this.props.dispatch({
+  //     type: 'READ_ARTICLE',
+  //     payload: id
+  //   })
+  //   // push to article page
+  //   this.props.history.push('/readArticle');
+  // }
   render() {
       // console.log('Article object:', this.props.blog);
     return (
@@ -37,7 +41,11 @@ class ViewAllArticles extends Component {
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
                 <p>Author: {post.full_name}</p>
-                <p><button onClick={() => this.handleRead(post.id)}>Read More...</button></p>
+                <Link to="/readArticle">
+                  <ReadMoreButton
+                    postId={post.id}
+                  />
+                </Link>
               </div>
             )
           })}

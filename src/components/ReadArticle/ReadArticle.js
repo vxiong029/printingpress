@@ -9,6 +9,7 @@ import { convertFromRaw } from 'draft-js';
 // component imports
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
 import FollowButton from '../FollowButton/FollowButton';
+import UnfollowButton from '../UnfollowButton/UnfollowButton';
 
 class ReadArticle extends Component {
   // componentDidMount() {
@@ -28,21 +29,7 @@ class ReadArticle extends Component {
       payload: id
     })
   }
-  // // follow button handle click
-  // handleFollow = (id) => {
-  //   // post
-  //   this.props.dispatch({
-  //     type: 'FOLLOW_USER',
-  //     payload: {id}
-  //   })
-  // }
-  // unfollow button handleclick
-  handleUnfollow = (id) => {
-    this.props.dispatch({
-      type: 'UNFOLLOW_USER',
-      payload: {id}
-    })
-  }
+  // unfollow button id handleclick NEEDS TO BECOME {id}
   // convert draft.js object to HTML
   convertContent = (text) => {
     console.log('in convert content', text);
@@ -73,9 +60,9 @@ class ReadArticle extends Component {
                   />
                 </>
               )
-                // ? 
-                // <button onClick={() => this.handleUnfollow(article.blog_id)}>Unfollow</button>
-                // :
+                // <UnfollowButton
+                //   blogId={post.blog_id}
+                // />
               } 
               <p>Date: {post.date} / Category: {post.name}</p>
               <div dangerouslySetInnerHTML={{ __html: this.convertContent(post.blog_content)}} >

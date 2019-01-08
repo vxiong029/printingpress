@@ -1,9 +1,13 @@
 // react/redux imports
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+// router imports
+import { Link } from 'react-router-dom';
 // component imports
 import LogOutButton from '../LogOutButton/LogOutButton';
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
+import UnfollowButton from '../UnfollowButton/UnfollowButton';
+import ReadMoreButton from '../ReadMoreButton/ReadMoreButton';
 
 class UserPage extends Component {
   componentDidMount() {
@@ -12,21 +16,6 @@ class UserPage extends Component {
     })
     this.props.dispatch({
       type: 'GET_USER_ARTICLES',
-    })
-  }
-  // unfollow button handleclick
-  handleUnfollow = (id) => {    
-    this.props.dispatch({
-      type: 'UNFOLLOW_USER',
-      payload: id
-    })
-  }
-  // follow button handle click
-  handleFollow = (id) => {
-    // post
-    this.props.dispatch({
-      type: 'FOLLOW_USER',
-      payload: { id }
     })
   }
   // edit button handle click
@@ -38,15 +27,6 @@ class UserPage extends Component {
       payload: id
     })
   }
-  // delete handle click
-  // handleDelete = (id) => {
-  //   console.log('in handle delete', id);
-
-  //   this.props.dispatch({
-  //     type: 'DELETE_ARTICLE',
-  //     payload: id
-  //   })
-  // }
   render() {
     return (
       <div>
@@ -68,7 +48,10 @@ class UserPage extends Component {
               <div key={userBlog.id}>
                 <h3>{userBlog.full_name}</h3>
                 <p>{userBlog.description}</p>
-                <button onClick={() => this.handleUnfollow(userBlog.sub_blog_id)}>Unfollow</button>
+                <UnfollowButton
+                  blogId={userBlog.sub_blog_id}
+                />
+                {/* <button onClick={() => this.handleUnfollow(userBlog.sub_blog_id)}>Unfollow</button> */}
               </div>
             )
           })}
@@ -78,6 +61,10 @@ class UserPage extends Component {
           {this.props.blog.map(post => {
             return (
               <div key={post.id}>
+                <button onClick={() => this.handleEdit(post.id)}>Edit</button>
+                <DeleteArticleButton
+                  postId={post.id}
+                />
                 <h2>{post.title}</h2>
                 <img
                   alt=""
@@ -87,10 +74,11 @@ class UserPage extends Component {
                 />
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
-                <button onClick={() => this.handleEdit(post.id)}>Edit</button>
-                <DeleteArticleButton 
-                  postId={post.id}
-                />
+                <Link to="/readArticle">
+                  <ReadMoreButton
+                    postId={post.id}
+                  />
+                </Link>
               </div>
             )
           })}
