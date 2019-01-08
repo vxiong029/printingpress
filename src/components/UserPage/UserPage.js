@@ -1,5 +1,7 @@
+// react/redux imports
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+// component imports
 import LogOutButton from '../LogOutButton/LogOutButton';
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
 

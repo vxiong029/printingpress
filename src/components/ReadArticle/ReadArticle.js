@@ -1,11 +1,14 @@
+// react/redux imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+// router imports
+import { Link } from 'react-router-dom';
+// draftjs imports
 import { stateToHTML } from 'draft-js-export-html';
 import { convertFromRaw } from 'draft-js';
-import { Link } from 'react-router-dom';
-
+// component imports
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
+import FollowButton from '../FollowButton/FollowButton';
 
 class ReadArticle extends Component {
   // componentDidMount() {
@@ -16,17 +19,6 @@ class ReadArticle extends Component {
   //     return one;
   //   }
   // }
-  // delete button handle click
-  // handleDelete = (id) => {
-  //   console.log('in handle delete', id);
-
-  //   this.props.dispatch({
-  //     type: 'DELETE_ARTICLE',
-  //     payload: id
-  //   })
-  //   // push to view all article page
-  //   this.props.history.push('/articles');
-  // }
   // edit button handle click
   handleEdit = (id) => {
     console.log('in handle edit', id);
@@ -36,14 +28,14 @@ class ReadArticle extends Component {
       payload: id
     })
   }
-  // follow button handle click
-  handleFollow = (id) => {
-    // post
-    this.props.dispatch({
-      type: 'FOLLOW_USER',
-      payload: {id}
-    })
-  }
+  // // follow button handle click
+  // handleFollow = (id) => {
+  //   // post
+  //   this.props.dispatch({
+  //     type: 'FOLLOW_USER',
+  //     payload: {id}
+  //   })
+  // }
   // unfollow button handleclick
   handleUnfollow = (id) => {
     this.props.dispatch({
@@ -75,7 +67,10 @@ class ReadArticle extends Component {
               <p>{post.description}</p>
               {this.props.user.full_name !== post.full_name && (
                 <>
-                  <button onClick={() => this.handleFollow(post.blog_id)}>Follow</button>
+                  {/* <button onClick={() => this.handleFollow(post.blog_id)}>Follow</button> */}
+                  <FollowButton
+                    blogId={post.blog_id}
+                  />
                 </>
               )
                 // ? 
