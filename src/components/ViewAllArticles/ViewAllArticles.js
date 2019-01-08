@@ -20,7 +20,7 @@ class ViewAllArticles extends Component {
     this.props.history.push('/readArticle');
   }
   render() {
-      console.log('Article object:', this.props.blog);
+      // console.log('Article object:', this.props.blog);
     return (
       <div>
           <h1>Articles</h1>
@@ -28,14 +28,12 @@ class ViewAllArticles extends Component {
             return (
               <div key={post.id}>
                 <h2>{post.title}</h2>
-                <p>
                   <img 
                     alt={post.title}
                     src={post.img_header} 
                     width="100" 
                     height="100"
                   />
-                </p>
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
                 <p>Author: {post.full_name}</p>

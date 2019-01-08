@@ -31,18 +31,15 @@ router.get('/', (req, res) => {
  * Follow a user - post into subscrition_feed database table
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('in subscription post blog_id', req.body.id);
-  console.log('in subscription post user_id', req.user.id);
-  
-  // values of input field in createPost
+    // values of input field in createPost
   let queryValues = [
     req.body.id,
     req.user.id
   ];
-
   let queryString = `INSERT INTO "subscription_feed" 
                   ("blog_id", "person_id") 
                   VALUES ($1, $2);`;
+
   pool.query(queryString, queryValues)
     .then(result => {
       res.sendStatus(201);
@@ -59,7 +56,6 @@ router.delete('/:id', (req, res) => {
   const queryString = `DELETE FROM "subscription_feed" 
                     WHERE "subscription_feed"."blog_id" = $1;`;
   let id = req.params.id;
-  console.log('route delete', id);
 
   pool.query(queryString, [id])
     .then(result => {

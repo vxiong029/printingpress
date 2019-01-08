@@ -4,7 +4,7 @@ import axios from 'axios';
 // get subscription feed
 function* getSubscription() {
   try {
-    console.log('getSubscription feed by user id:');
+    console.log('getSubscription saga triggered');
     const subFeed = yield call(axios.get, `/api/subscription`);
     yield put({
       type: 'FETCH_SUBSCRIPTION_FEED',
@@ -18,7 +18,7 @@ function* getSubscription() {
 // post follow user saga
 function* followUser(action) {
   try {
-    console.log('followUser triggered (blog_id):');
+    console.log('followUser saga triggered');
     yield call(axios.post, `/api/subscription`, action.payload);
     yield put({
       type: 'GET_SUBSCRIPTION_FEED',
@@ -31,7 +31,7 @@ function* followUser(action) {
 // unfollow user saga
 function* unfollowUser(action) {
   try {
-    console.log('unfollowUser triggered', action.payload);
+    console.log('unfollowUser saga triggered', action.payload);
     yield call(axios.delete, `/api/subscription/${action.payload}`);
     yield put({
       type: 'GET_SUBSCRIPTION_FEED',

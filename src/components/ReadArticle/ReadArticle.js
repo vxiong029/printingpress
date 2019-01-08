@@ -3,19 +3,30 @@ import { connect } from 'react-redux';
 
 import { stateToHTML } from 'draft-js-export-html';
 import { convertFromRaw } from 'draft-js';
+import { Link } from 'react-router-dom';
+
+import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
 
 class ReadArticle extends Component {
+  // componentDidMount() {
+  //   let subscription = this.props.subscription;
+  //   for(let one of subscription) {
+  //     console.log('component did mount', one);
+      
+  //     return one;
+  //   }
+  // }
   // delete button handle click
-  handleDelete = (id) => {
-    console.log('in handle delete', id);
+  // handleDelete = (id) => {
+  //   console.log('in handle delete', id);
 
-    this.props.dispatch({
-      type: 'DELETE_ARTICLE',
-      payload: id
-    })
-    // push to view all article page
-    this.props.history.push('/articles');
-  }
+  //   this.props.dispatch({
+  //     type: 'DELETE_ARTICLE',
+  //     payload: id
+  //   })
+  //   // push to view all article page
+  //   this.props.history.push('/articles');
+  // }
   // edit button handle click
   handleEdit = (id) => {
     console.log('in handle edit', id);
@@ -42,34 +53,46 @@ class ReadArticle extends Component {
   }
   // convert draft.js object to HTML
   convertContent = (text) => {
+    console.log('in convert content', text);
     return stateToHTML(convertFromRaw(JSON.parse(text)));
   }
   render() {
-    console.log('in readArticle.js subscription feed:', this.props.subscription);
+    console.log('in read article', this.props.readArticle);
     
     return (
-      <div>
-        {this.props.readArticle.map(article => {
+      <div>      
+        {this.props.readArticle.map(post => {
           return (
-            <div key={article.id}>
+            <div key={post.id}>
               <img
-                alt={article.title}
-                src={article.img_header}
+                alt={post.title}
+                src={post.img_header}
                 width="500"
                 height="500"
               />
-              <h1>{article.title}</h1>
-              <h4>Author: {article.full_name}</h4>
-              <p>{article.description}</p>
-              <button onClick={() => this.handleUnfollow(article.blog_id)}>Unfollow</button>
-              <button onClick={() => this.handleFollow(article.blog_id)}>Follow</button>
-              <p>Date: {article.date} / Category: {article.name}</p>
-              <div dangerouslySetInnerHTML={{ __html: this.convertContent(article.blog_content) } } >
-              </div>
-              {this.props.user.full_name === article.full_name && (
+              <h1>{post.title}</h1>
+              <h4>Author: {post.full_name}</h4>
+              <p>{post.description}</p>
+              {this.props.user.full_name !== post.full_name && (
                 <>
-                  <button onClick={() => this.handleEdit(article.id)}>Edit</button>
-                  <button onClick={() => this.handleDelete(article.id)}>Delete</button>
+                  <button onClick={() => this.handleFollow(post.blog_id)}>Follow</button>
+                </>
+              )
+                // ? 
+                // <button onClick={() => this.handleUnfollow(article.blog_id)}>Unfollow</button>
+                // :
+              } 
+              <p>Date: {post.date} / Category: {post.name}</p>
+              <div dangerouslySetInnerHTML={{ __html: this.convertContent(post.blog_content)}} >
+              </div>
+              {this.props.user.full_name === post.full_name && (
+                <>
+                  <button onClick={() => this.handleEdit(post.id)}>Edit</button>
+                  <Link to="/articles">
+                    <DeleteArticleButton
+                      postId={post.id}
+                    />
+                  </Link>
                 </>
               )}
             </div>

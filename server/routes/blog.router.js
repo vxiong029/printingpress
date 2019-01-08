@@ -38,6 +38,8 @@ router.get('/:id', (req, res) => {
   pool.query(queryString, [id])
     .then((result) => { 
       res.send(result.rows);
+      console.log('in blog router get by id', result.rows);
+      
     })
     .catch((err) => {
       console.log('Error completing SELECT get query', err);
