@@ -42,7 +42,7 @@ class UserPage extends Component {
           <LogOutButton className="log-in" />
         </div>
         <div>
-          <h1>Subscription Feed</h1>
+          <h1>My Subscription Feed</h1>
           {this.props.subscription.map(userBlog => {
             return (
               <div key={userBlog.id}>
@@ -61,24 +61,26 @@ class UserPage extends Component {
           {this.props.blog.map(post => {
             return (
               <div key={post.id}>
+                <h2>{post.title}</h2>
                 <button onClick={() => this.handleEdit(post.id)}>Edit</button>
                 <DeleteArticleButton
                   postId={post.id}
                 />
-                <h2>{post.title}</h2>
-                <img
-                  alt=""
-                  src={post.img_header}
-                  width="100"
-                  height="100"
-                />
+                <p>
+                  <img
+                    alt=""
+                    src={post.img_header}
+                    width="100"
+                    height="100"
+                  />
+                </p>
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
-                <Link to="/readArticle">
+                {/* <Link to={`/articles/${post.id}`}> */}
                   <ReadMoreButton
                     postId={post.id}
                   />
-                </Link>
+                {/* </Link> */}
               </div>
             )
           })}

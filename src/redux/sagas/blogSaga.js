@@ -11,11 +11,11 @@ function* getAllArticlePosts() {
       payload: blogPost.data
     });
   } catch (error) {
-    console.log('Error with user get blog posts');
+    console.log('Error with get all blog posts', error);
   }
 }
 
-// get ONE article based on id of article
+// get ONE article based on ID of ARTICLE
 function* readArticle(action) {
   try {
     console.log('readArticle saga triggered');
@@ -26,12 +26,13 @@ function* readArticle(action) {
       type: 'FETCH_ARTICLE_POST',
       payload: readArticle.data
     });
+    // yield action.history.push(`/readArticle/${action.payload}`);
   } catch (error) {
     console.log('Error with user read article:', error);
   }
 }
 
-// get ALL articles based on id of user
+// get ALL articles based on ID of USER
 function* getUserArticles() {
   try {
     console.log('getUserArticles triggered');

@@ -1,17 +1,17 @@
 .editor {
-  box-sizing: border-box;
+  /* box-sizing: border-box;
   border: 1px solid #ddd;
   cursor: text;
-  padding: 16px;
-  border-radius: 2px;
+  border-radius: 2px; */
   margin-bottom: 2em;
-  margin-left: 5px;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
-  background: #fefefe;
-  width: 500px;
-  height: 500px;
+  margin-left: 15px;
+  padding-top: 60px;
+  /* box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  background: #fefefe; */
+  width: 800px;
+  height: 800px;
   overflow: scroll;
-  font-family: century;
+  /* font-family: century; */
 }
 
 .editor :global(.public-DraftEditor-content) {
@@ -23,7 +23,7 @@
 }
 
 .toolbar {
-  width: 500px;
+  width: 800px;
   padding: 5px;
 }
 
@@ -48,7 +48,7 @@
 
 .draftJsToolbar__button__qi1gf:hover, .draftJsToolbar__button__qi1gf:focus {
   background: #f3f3f3;
-  outline: 0; /* reset for :focus */
+  outline: 0; 
 }
 
 .draftJsToolbar__active__3qcpF {

@@ -16,20 +16,14 @@ import Home from '../Home/Home';
 import UserPage from '../UserPage/UserPage';
 import CreatePost from '../CreatePost/CreatePost';
 import ViewAllArticles from '../ViewAllArticles/ViewAllArticles';
+import ReadArticle from '../ReadArticle/ReadArticle';
 
 import './App.css';
-import ReadArticle from '../ReadArticle/ReadArticle';
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
   }
-  // loadSubscriptionFeed() {
-  //   this.props.dispatch({
-  //     type: 'GET_SUBSCRIPTION_FEED',
-  //     payload: this.props.user.id
-  //   })
-  // }
   render() {
     return (
       <Router>
@@ -43,11 +37,13 @@ class App extends Component {
               component={Home}
             />
             <Route 
+              exact
               path="/articles"
               component={ViewAllArticles}
             />
             <Route 
-              path="/readArticle"
+              exact
+              path="/articles/:id"
               component={ReadArticle}
             />
             {/* For protected routes, the view could show one of several things on the same route.

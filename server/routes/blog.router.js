@@ -6,11 +6,11 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * Get all of the blog posts
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   const queryString = `SELECT "person".full_name, "blog_posts".id, "title", 
                     to_char("date", 'Mon DD, YYYY') AS "date", 
-                    "category".name, "img_header" FROM "blog_posts" 
-                    JOIN "person" ON "blog_posts".person_id = "person".id 
+                    "category".name, "blog_posts".img_header, "blog_posts".blog_content
+                    FROM "blog_posts" JOIN "person" ON "blog_posts".person_id = "person".id 
                     JOIN "category" ON "blog_posts".category_id = "category".id 
                     ORDER BY "id" DESC;`;
   pool.query(queryString)
@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Get ONE blog post based on id
+ * Get ONE blog post based on id of ARTICLE
  */
 router.get('/:id', (req, res) => {
   const queryString = `SELECT "blog_posts".id, "person".full_name, "person".description,
@@ -37,9 +37,12 @@ router.get('/:id', (req, res) => {
 
   pool.query(queryString, [id])
     .then((result) => { 
-      res.send(result.rows);
-      console.log('in blog router get by id', result.rows);
-      
+      // sending back array of objects as just an object
+      // picking the first thing out of the array of object
+      let obj = result.rows[0];
+      res.send(obj);
+
+      console.log('in blog router get by id', obj);
     })
     .catch((err) => {
       console.log('Error completing SELECT get query', err);
@@ -77,7 +80,7 @@ router.post('/post', rejectUnauthenticated, (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const queryString = `DELETE FROM "blog_posts" WHERE "id" = $1;`;
   let id = req.params.id;
   console.log('route delete', id);
@@ -94,7 +97,7 @@ router.delete('/:id', (req, res) => {
 /**
  * Update an item if it's something the logged in user added
  */
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   const queryString = ``;
   let id = req.params.id;
   console.log('route edit/put', id);

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import '../CreatePost/CreatePost.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
 // draft.js imports
-import {
-  EditorState,
+import { 
+  EditorState, 
   convertToRaw,
   // convertFromRaw
 } from 'draft-js';
@@ -40,7 +40,7 @@ const plugins = [focusPlugin, staticToolbarPlugin];
 
 // import 'megadraft/dist/css/megadraft.css';
 
-class CreatePost extends Component {
+class TextEditor extends Component {
   // empty state of blog post
   state = {
     newPost: {
@@ -50,7 +50,7 @@ class CreatePost extends Component {
       category_id: 1,
     },
     editorState: EditorState.createEmpty(),
-    //   editorState: editorStateFromRaw(this.props.readArticle.blog_content)
+  //   editorState: editorStateFromRaw(this.props.readArticle.blog_content)
   }
   // holds the post info
   handleDetailChange = propertyName => (event) => {
@@ -68,7 +68,7 @@ class CreatePost extends Component {
   }
   // trigger saga post
   submitPost = () => {
-    const content = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+    const content = convertToRaw(this.state.editorState.getCurrentContent());
     // Your function to save the content
     // save_my_content(content);
     console.log(content);
@@ -82,13 +82,13 @@ class CreatePost extends Component {
     });
   }
   // focus on an object
-  focus = () => {
-    this.editor.focus();
-  }
+  // focus = () => {
+  //   this.editor.focus();
+  // }
   render() {
     return (
       <div>
-        <pre>{JSON.stringify(this.state.newPost)}</pre>
+        {/* <pre>{JSON.stringify(this.state.newPost)}</pre> */}
         <div className="toolbar">
           <input
             type="url"
@@ -130,7 +130,7 @@ class CreatePost extends Component {
             }
           </Toolbar>
         </div>
-        <div className="editor" onClick={()=> this.focus}>
+        <div className="editor">
           <Editor
             editorState={this.state.editorState}
             onChange={this.handleContentChange}
@@ -138,7 +138,7 @@ class CreatePost extends Component {
             ref={(element) => { this.editor = element; }}
           />
 
-          {/* <MegadraftEditor
+            {/* <MegadraftEditor
               editorState={this.state.editorState}
               onChange={this.handleContentChange}
               plugins={[image]}
@@ -158,4 +158,4 @@ const mapStateToProps = state => ({
   subscription: state.subscription,
 })
 
-export default connect(mapStateToProps)(CreatePost);
+export default connect(mapStateToProps)(TextEditor);

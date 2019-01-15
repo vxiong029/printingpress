@@ -12,19 +12,7 @@ class ViewAllArticles extends Component {
       type: 'GET_ALL_ARTICLE_POSTS'
     })
   }
-  // read more button handle click
-  // handleRead = (id) => {
-  //   console.log('in handle read', id);
-  //   // dispatch to blogSaga
-  //   this.props.dispatch({
-  //     type: 'READ_ARTICLE',
-  //     payload: id
-  //   })
-  //   // push to article page
-  //   this.props.history.push('/readArticle');
-  // }
   render() {
-      // console.log('Article object:', this.props.blog);
     return (
       <div>
           <h1>Articles</h1>
@@ -41,11 +29,11 @@ class ViewAllArticles extends Component {
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
                 <p>Author: {post.full_name}</p>
-                <Link to="/readArticle">
+                {/* <Link to={`/articles/${post.id}`}> */}
                   <ReadMoreButton
                     postId={post.id}
                   />
-                </Link>
+                {/* </Link> */}
               </div>
             )
           })}

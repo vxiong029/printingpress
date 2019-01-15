@@ -4,22 +4,42 @@ import { connect } from 'react-redux';
 // router imports
 import { Link } from 'react-router-dom';
 // draftjs imports
-import { stateToHTML } from 'draft-js-export-html';
-import { convertFromRaw } from 'draft-js';
+import Editor from 'draft-js-plugins-editor';
+import {
+  convertToRaw,
+  convertFromRaw,
+  EditorState
+} from 'draft-js';
+
 // component imports
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
 import FollowButton from '../FollowButton/FollowButton';
-import UnfollowButton from '../UnfollowButton/UnfollowButton';
 
 class ReadArticle extends Component {
-  // componentDidMount() {
-  //   let subscription = this.props.subscription;
-  //   for(let one of subscription) {
-  //     console.log('component did mount', one);
-      
-  //     return one;
-  //   }
-  // }
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'READ_ARTICLE',
+      payload: this.props.match.params.id,
+    })
+  }
+
+  constructor(props) {
+    super(props);
+    if (!this.props.readArticle.blog_content) {
+      this.state = {
+        editorState: EditorState.createEmpty()
+      };
+      console.log('empty');
+    } else {
+      const rawContent = this.props.readArticle.blog_content;
+      const parsedContent = convertFromRaw(JSON.parse(rawContent));
+
+      this.state = {
+        editorState: EditorState.createWithContent(parsedContent)
+      };
+      console.log('not empty');
+    }
+  }
   // edit button handle click
   handleEdit = (id) => {
     console.log('in handle edit', id);
@@ -29,57 +49,60 @@ class ReadArticle extends Component {
       payload: id
     })
   }
-  // unfollow button id handleclick NEEDS TO BECOME {id}
-  // convert draft.js object to HTML
-  convertContent = (text) => {
-    console.log('in convert content', text);
-    return stateToHTML(convertFromRaw(JSON.parse(text)));
+  // handle content change
+  handleContentChange = (editorState) => {
+    this.setState({
+      editorState
+    });
   }
   render() {
-    console.log('in read article', this.props.readArticle);
-    
-    return (
-      <div>      
-        {this.props.readArticle.map(post => {
-          return (
-            <div key={post.id}>
-              <img
-                alt={post.title}
-                src={post.img_header}
-                width="500"
-                height="500"
+    let content;
+    if (this.props.user.full_name === this.props.readArticle.full_name) {
+      content =
+        <div>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.handleContentChange}
+            // plugins={plugins}
+            ref={(element) => { this.editor = element; }}
+            data={this.props.readArticle.blog_content}
+          />
+          <p>
+            <button onClick={() => this.handleEdit(this.props.readArticle.id)}>Save Edit</button>
+            <Link to="/articles">
+              <DeleteArticleButton
+                postId={this.props.readArticle.id}
               />
-              <h1>{post.title}</h1>
-              <h4>Author: {post.full_name}</h4>
-              <p>{post.description}</p>
-              {this.props.user.full_name !== post.full_name && (
-                <>
-                  {/* <button onClick={() => this.handleFollow(post.blog_id)}>Follow</button> */}
-                  <FollowButton
-                    blogId={post.blog_id}
-                  />
-                </>
-              )
-                // <UnfollowButton
-                //   blogId={post.blog_id}
-                // />
-              } 
-              <p>Date: {post.date} / Category: {post.name}</p>
-              <div dangerouslySetInnerHTML={{ __html: this.convertContent(post.blog_content)}} >
-              </div>
-              {this.props.user.full_name === post.full_name && (
-                <>
-                  <button onClick={() => this.handleEdit(post.id)}>Edit</button>
-                  <Link to="/articles">
-                    <DeleteArticleButton
-                      postId={post.id}
-                    />
-                  </Link>
-                </>
-              )}
-            </div>
-          )
-        })}
+            </Link>
+          </p>
+        </div>
+    } else {
+      content =
+        <div>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.handleContentChange}
+            // plugins={plugins}
+            ref={(element) => { this.editor = element; }}
+            data={this.props.readArticle.blog_content}
+            readOnly
+          />
+        </div>
+    }
+    return (
+      <div key={this.props.readArticle.id}>
+        <h2>{this.props.match.params.id}</h2>
+        <img
+          src={this.props.readArticle.img_header}
+          alt={this.props.readArticle.title}
+          width="500"
+          height="500"
+        />
+        <h1>{this.props.readArticle.title}</h1>
+        <p>Date: {this.props.readArticle.date}</p>
+        <p>Author: {this.props.readArticle.full_name}</p>
+        <p>{this.props.readArticle.description}</p>
+        {content}
       </div>
     )
   }
