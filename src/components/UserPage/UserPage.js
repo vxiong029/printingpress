@@ -1,8 +1,6 @@
 // react/redux imports
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// router imports
-import { Link } from 'react-router-dom';
 // component imports
 import LogOutButton from '../LogOutButton/LogOutButton';
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
@@ -62,7 +60,6 @@ class UserPage extends Component {
             return (
               <div key={post.id}>
                 <h2>{post.title}</h2>
-                <button onClick={() => this.handleEdit(post.id)}>Edit</button>
                 <DeleteArticleButton
                   postId={post.id}
                 />
@@ -76,11 +73,11 @@ class UserPage extends Component {
                 </p>
                 <p>{post.date}</p>
                 <p>Category: {post.name}</p>
-                {/* <Link to={`/articles/${post.id}`}> */}
-                  <ReadMoreButton
-                    postId={post.id}
-                  />
-                {/* </Link> */}
+
+                <ReadMoreButton
+                  postId={post.id}
+                />
+
               </div>
             )
           })}

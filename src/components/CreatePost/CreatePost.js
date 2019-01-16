@@ -13,7 +13,8 @@ import {
 import Editor from 'draft-js-plugins-editor';
 // plugin imports
 import createFocusPlugin from 'draft-js-focus-plugin';
-import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
+import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
+
 import {
   ItalicButton,
   BoldButton,
@@ -26,19 +27,9 @@ import {
 
 // plugins objects
 const focusPlugin = createFocusPlugin();
-const staticToolbarPlugin = createToolbarPlugin();
-const { Toolbar } = staticToolbarPlugin;
-const plugins = [focusPlugin, staticToolbarPlugin];
-
-// import {
-//   MegadraftEditor,
-//   editorStateFromRaw,
-//   editorStateToJSON
-// } from "megadraft";
-
-// import image from "megadraft/lib/plugins/image/plugin";
-
-// import 'megadraft/dist/css/megadraft.css';
+const inlineToolbarPlugin = createInlineToolbarPlugin();
+const { InlineToolbar } = inlineToolbarPlugin;
+const plugins = [focusPlugin, inlineToolbarPlugin];
 
 class CreatePost extends Component {
   // empty state of blog post
@@ -69,8 +60,6 @@ class CreatePost extends Component {
   // trigger saga post
   submitPost = () => {
     const content = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    // Your function to save the content
-    // save_my_content(content);
     console.log(content);
 
     this.props.dispatch({
@@ -112,23 +101,7 @@ class CreatePost extends Component {
             <option value={4}>Javascript</option>
             <option value={5}>Technology</option>
           </select>
-          <Toolbar>
-            {
-              // may be use React.Fragment instead of div to improve perfomance after React 16
-              (externalProps) => (
-                <div>
-                  <BoldButton {...externalProps} />
-                  <ItalicButton {...externalProps} />
-                  <UnderlineButton {...externalProps} />
-                  <CodeButton {...externalProps} />
-                  <Separator {...externalProps} />
-                  <UnorderedListButton {...externalProps} />
-                  <OrderedListButton {...externalProps} />
-                  <BlockquoteButton {...externalProps} />
-                </div>
-              )
-            }
-          </Toolbar>
+
         </div>
         <div className="editor" onClick={()=> this.focus}>
           <Editor
@@ -137,6 +110,22 @@ class CreatePost extends Component {
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
           />
+          <InlineToolbar>
+            {
+              // may be use React.Fragment instead of div to improve perfomance after React 16
+              (externalProps) => (
+                <div>
+                  <BoldButton {...externalProps} />
+                  <ItalicButton {...externalProps} />
+                  <UnderlineButton {...externalProps} />
+                  <CodeButton {...externalProps} />
+                  <UnorderedListButton {...externalProps} />
+                  <OrderedListButton {...externalProps} />
+                  <BlockquoteButton {...externalProps} />
+                </div>
+              )
+            }
+          </InlineToolbar>
         </div>
         <div>
           <button onClick={this.submitPost}>Submit</button>

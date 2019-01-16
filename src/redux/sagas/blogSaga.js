@@ -76,10 +76,15 @@ function* deleteArticle(action) {
   }
 }
 
-// edit article saga
+// edit article post saga
 function* editArticle(action) {
   try{
     console.log('editArticle saga triggered', action.payload);
+    yield call(axios.put, `/api/blog/${action.payload.id}`, action.payload);
+    yield put({
+      type: 'READ_ARTICLE',
+      payload: action.payload.id
+    })
   } catch (error) {
     console.log('Error with user edit article:', error);
   }

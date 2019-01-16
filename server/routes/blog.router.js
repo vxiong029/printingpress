@@ -28,7 +28,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const queryString = `SELECT "blog_posts".id, "person".full_name, "person".description,
                     "blog".id AS "blog_id", "title", to_char("date", 'Mon DD, YYYY') AS "date", 
-                    "category".name, "img_header", "blog_content" FROM "blog_posts" 
+                    "category".name, "category".id AS "category_id", "img_header", 
+                    "blog_content" FROM "blog_posts" 
                     JOIN "person" ON "blog_posts".person_id = "person".id 
                     JOIN "category" ON "blog_posts".category_id = "category".id 
                     JOIN "blog" ON "blog".id = "person".id
@@ -56,7 +57,7 @@ router.get('/:id', (req, res) => {
 router.post('/post', rejectUnauthenticated, (req, res) => {
   console.log('in blog post');
   // values of input field in createPost
-  let queryValues = [
+  const queryValues = [
     req.body.post_details.img_header,
     req.body.post_details.title,
     req.body.post_details.date,
@@ -65,7 +66,7 @@ router.post('/post', rejectUnauthenticated, (req, res) => {
     req.user.id
   ];
 
-  let queryString = `INSERT INTO "blog_posts" ("img_header", "title", 
+  const queryString = `INSERT INTO "blog_posts" ("img_header", "title", 
                   "date", "category_id", "blog_content", "person_id")
                   VALUES ($1, $2, $3, $4, $5, $6);`;
   pool.query(queryString, queryValues)
@@ -95,12 +96,25 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Update an item if it's something the logged in user added
+ * Update an article blog content if it's something the logged in user added
  */
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const queryString = ``;
-  let id = req.params.id;
-  console.log('route edit/put', id);
+  const queryValues = [
+    req.body.post_content,
+    req.params.id
+  ]
+  const queryString = `UPDATE "blog_posts" SET "blog_content" = $1 
+                    WHERE "id" = $2;`;
+
+  // console.log('route edit/put', queryValues);
+
+  pool.query(queryString, queryValues)
+    .then(result => {
+      res.send(201);
+    }).catch(err => {
+      console.log('error in update/put:', err);
+      res.sendStatus(500);
+    })
 });
 
 module.exports = router;
