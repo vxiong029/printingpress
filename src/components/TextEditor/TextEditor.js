@@ -5,12 +5,11 @@ import '../CreatePost/CreatePost.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
 // router imports
 import { Link } from 'react-router-dom';
-
+// components imports
 import DeleteArticleButton from '../DeleteArticleButton/DeleteArticleButton';
-
 // draft.js imports
-import { 
-  EditorState, 
+import {
+  EditorState,
   convertToRaw,
   convertFromRaw
 } from 'draft-js';
@@ -18,22 +17,24 @@ import {
 import Editor from 'draft-js-plugins-editor';
 // plugin imports
 import createFocusPlugin from 'draft-js-focus-plugin';
-import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
-// import {
-//   ItalicButton,
-//   BoldButton,
-//   UnderlineButton,
-//   CodeButton,
-//   UnorderedListButton,
-//   OrderedListButton,
-//   BlockquoteButton,
-// } from 'draft-js-buttons';
+import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
+import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 
-// // plugins objects
-// const focusPlugin = createFocusPlugin();
-// const staticToolbarPlugin = createToolbarPlugin();
-// const { Toolbar } = staticToolbarPlugin;
-// const plugins = [focusPlugin, staticToolbarPlugin];
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+} from 'draft-js-buttons';
+
+// plugins objects
+const focusPlugin = createFocusPlugin();
+const inlineToolbarPlugin = createInlineToolbarPlugin();
+const { InlineToolbar } = inlineToolbarPlugin;
+const plugins = [focusPlugin, inlineToolbarPlugin];
 
 class TextEditor extends Component {
   constructor(props) {
@@ -68,18 +69,39 @@ class TextEditor extends Component {
       editorState
     });
   }
+  focus = () => {
+    this.editor.focus();
+  }
   render() {
     let content;
     if (this.props.user.full_name === this.props.readArticle.full_name) {
       content =
         <div>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.handleContentChange}
-            // plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-            data={this.props.readArticle.blog_content}
-          />
+          <div onClick={this.focus}>
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.handleContentChange}
+              plugins={plugins}
+              ref={(element) => { this.editor = element; }}
+              data={this.props.readArticle.blog_content}
+            />
+            <InlineToolbar>
+              {
+                // may be use React.Fragment instead of div to improve perfomance after React 16
+                (externalProps) => (
+                  <div>
+                    <BoldButton {...externalProps} />
+                    <ItalicButton {...externalProps} />
+                    <UnderlineButton {...externalProps} />
+                    <CodeButton {...externalProps} />
+                    <UnorderedListButton {...externalProps} />
+                    <OrderedListButton {...externalProps} />
+                    <BlockquoteButton {...externalProps} />
+                  </div>
+                )
+              }
+            </InlineToolbar>
+          </div>
           <p>
             <button onClick={() => this.handleEdit(this.props.readArticle.id)}>Save Edit</button>
             <Link to="/articles">
@@ -92,14 +114,32 @@ class TextEditor extends Component {
     } else {
       content =
         <div>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.handleContentChange}
-            // plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-            data={this.props.readArticle.blog_content}
-            readOnly
-          />
+          <div onClick={this.focus}>
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.handleContentChange}
+              plugins={plugins}
+              ref={(element) => { this.editor = element; }}
+              data={this.props.readArticle.blog_content}
+              readOnly
+            />
+            <InlineToolbar>
+              {
+                // may be use React.Fragment instead of div to improve perfomance after React 16
+                (externalProps) => (
+                  <div>
+                    <BoldButton {...externalProps} />
+                    <ItalicButton {...externalProps} />
+                    <UnderlineButton {...externalProps} />
+                    <CodeButton {...externalProps} />
+                    <UnorderedListButton {...externalProps} />
+                    <OrderedListButton {...externalProps} />
+                    <BlockquoteButton {...externalProps} />
+                  </div>
+                )
+              }
+            </InlineToolbar>
+          </div>
         </div>
     }
     return (

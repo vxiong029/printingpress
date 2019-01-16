@@ -137,12 +137,6 @@ class CreatePost extends Component {
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
           />
-
-          {/* <MegadraftEditor
-              editorState={this.state.editorState}
-              onChange={this.handleContentChange}
-              plugins={[image]}
-            /> */}
         </div>
         <div>
           <button onClick={this.submitPost}>Submit</button>
