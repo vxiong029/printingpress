@@ -227,22 +227,6 @@ class TextEditor extends Component {
               data={this.props.readArticle.blog_content}
               readOnly
             />
-            <InlineToolbar>
-              {
-                // may be use React.Fragment instead of div to improve perfomance after React 16
-                (externalProps) => (
-                  <div>
-                    <BoldButton {...externalProps} />
-                    <ItalicButton {...externalProps} />
-                    <UnderlineButton {...externalProps} />
-                    <CodeButton {...externalProps} />
-                    <UnorderedListButton {...externalProps} />
-                    <OrderedListButton {...externalProps} />
-                    <BlockquoteButton {...externalProps} />
-                  </div>
-                )
-              }
-            </InlineToolbar>
           </div>
         </div>
     };

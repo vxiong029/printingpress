@@ -4,11 +4,16 @@ import { connect } from 'react-redux';
 
 // component imports
 import TextEditor from '../TextEditor/TextEditor';
+import ArticleComments from '../ArticleComments/ArticleComments';
 
 class ReadArticle extends Component {
   componentDidMount() {
     this.props.dispatch({
       type: 'READ_ARTICLE',
+      payload: this.props.match.params.id,
+    })
+    this.props.dispatch({
+      type: 'LOAD_COMMENTS',
       payload: this.props.match.params.id,
     })
   }
@@ -17,6 +22,8 @@ class ReadArticle extends Component {
       <div key={this.props.readArticle.id}>
         <h2>{this.props.match.params.id}</h2>
         <TextEditor
+        />
+        <ArticleComments
         />
       </div>
     )

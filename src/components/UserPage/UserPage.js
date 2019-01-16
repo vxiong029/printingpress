@@ -49,7 +49,6 @@ class UserPage extends Component {
                 <UnfollowButton
                   blogId={userBlog.sub_blog_id}
                 />
-                {/* <button onClick={() => this.handleUnfollow(userBlog.sub_blog_id)}>Unfollow</button> */}
               </div>
             )
           })}

@@ -37,7 +37,7 @@ class CreatePost extends Component {
     newPost: {
       img_header: '',
       title: '',
-      date: '',
+      date: new Date().toLocaleString(),
       category_id: 1,
     },
     editorState: EditorState.createEmpty(),
@@ -89,11 +89,7 @@ class CreatePost extends Component {
             placeholder="Title"
             onChange={this.handleDetailChange('title')}
           />
-          <input
-            type="date"
-            placeholder="Date"
-            onChange={this.handleDetailChange('date')}
-          />
+          {this.state.newPost.date}
           <select onChange={this.handleDetailChange('category_id')}>
             <option value={1}>React</option>
             <option value={2}>CSS</option>

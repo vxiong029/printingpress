@@ -5,6 +5,7 @@ import user from './userReducer';
 import blog from './blogReducer';
 import readArticle from './readArticleReducer';
 import subscription from './subscriptionReducer';
+import comments from './commentReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   blog,
   readArticle,
-  subscription
+  subscription,
+  comments
 });
 
 export default rootReducer;

@@ -90,6 +90,33 @@ function* editArticle(action) {
   }
 }
 
+// post comment in article saga
+function* createComment(action) {
+  try{
+    console.log('postComment saga triggered', action.payload);
+    yield call(axios.post, '/api/comments/post', action.payload);
+    yield put({
+      type: 'LOAD_COMMENTS'
+    });
+  } catch (error) {
+    console.log('Error with user create comment post:', error);
+  }
+}
+
+// get comments for article saga
+function* getComments(action) {
+  try {
+    console.log('getComment saga triggered', action.payload);
+    const comments = yield call(axios.get, `/api/comments/${action.payload}`);
+    yield put({
+      type: 'FETCH_ALL_COMMENTS',
+      payload: comments.data
+    });
+  } catch (error) {
+    console.log('Error with user create comment post:', error);
+  }
+}
+
 function* blogSaga() {
   yield takeLatest('GET_ALL_ARTICLE_POSTS', getAllArticlePosts);
   yield takeLatest('POST_ARTICLE', createArticle);
@@ -97,6 +124,8 @@ function* blogSaga() {
   yield takeLatest('EDIT_ARTICLE', editArticle);
   yield takeLatest('READ_ARTICLE', readArticle);
   yield takeLatest('GET_USER_ARTICLES', getUserArticles);
+  yield takeLatest('POST_COMMENT', createComment);
+  yield takeLatest('LOAD_COMMENTS', getComments);
 }
 
 export default blogSaga;
