@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
                     "subscription_feed".blog_id AS "sub_blog_id", 
                     "blog".id AS "blog_id", "blog".person_id 
                     AS "blog_person_id", "person".full_name, 
-                    "person".description FROM "subscription_feed" 
+                    "person".description, "person".img_avatar FROM "subscription_feed" 
                     JOIN "blog" ON "blog".id = "subscription_feed".blog_id 
                     JOIN "person" ON "person".id = "blog".person_id 
                     WHERE "subscription_feed".person_id = $1;`;
@@ -36,6 +36,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     req.body.id,
     req.user.id
   ];
+
+  console.log('value of id', queryValues);
+  
   let queryString = `INSERT INTO "subscription_feed" 
                   ("blog_id", "person_id") 
                   VALUES ($1, $2);`;

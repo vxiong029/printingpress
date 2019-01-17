@@ -68,7 +68,7 @@ class ArticleComments extends Component {
   }
   render() {
     let comments;
-    if (this.props.user) {
+    if (this.props.user.id) {
       comments =
         <div>
           <div onClick={this.focus}>

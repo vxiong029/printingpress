@@ -18,7 +18,7 @@ function* getSubscription() {
 // post follow user saga
 function* followUser(action) {
   try {
-    console.log('followUser saga triggered');
+    console.log('followUser saga triggered', action.payload);
     yield call(axios.post, `/api/subscription`, action.payload);
     yield put({
       type: 'GET_SUBSCRIPTION_FEED',

@@ -96,7 +96,8 @@ function* createComment(action) {
     console.log('postComment saga triggered', action.payload);
     yield call(axios.post, '/api/comments/post', action.payload);
     yield put({
-      type: 'LOAD_COMMENTS'
+      type: 'LOAD_COMMENTS',
+      payload: action.payload
     });
   } catch (error) {
     console.log('Error with user create comment post:', error);

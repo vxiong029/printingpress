@@ -45,6 +45,10 @@ class UserPage extends Component {
             return (
               <div key={userBlog.id}>
                 <h3>{userBlog.full_name}</h3>
+                <img
+                  src={userBlog.img_avatar}
+                  alt={userBlog.img_avatar}
+                />
                 <p>{userBlog.description}</p>
                 <UnfollowButton
                   blogId={userBlog.sub_blog_id}

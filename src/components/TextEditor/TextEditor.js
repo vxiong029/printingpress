@@ -90,6 +90,13 @@ class TextEditor extends Component {
       editorState
     });
   }
+  // handle click for follow blog 
+  followBlog = (id) => {
+    this.props.dispatch({
+      type: 'FOLLOW_USER',
+      payload: {id: id}
+    })
+  }
   // focus editor plugin
   focus = () => {
     this.editor.focus();
@@ -135,7 +142,7 @@ class TextEditor extends Component {
           {this.props.user.full_name !== this.props.readArticle.full_name &&
             <>
               <p>
-                <FollowButton />
+                <button onClick={() => this.followBlog(this.props.readArticle.blog_id)}>Follow</button>
               </p>
             </>
           }
@@ -165,7 +172,7 @@ class TextEditor extends Component {
           {this.props.user.full_name !== this.props.readArticle.full_name &&
             <>
               <p>
-                <FollowButton />
+                <button onClick={() => this.followBlog(this.props.readArticle.blog_id)}>Follow</button>
               </p>
             </>
           }
