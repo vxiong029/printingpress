@@ -7,17 +7,24 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <Link to="/">
-      <h2 className="nav-title">Prime Solo Project</h2>
+      <h2 className="nav-title">Printing Press</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/user">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'User Home' : 'Login / Register'}
-      </Link>
-      <Link className="nav-link" to="/articles">
-        View Printing Press Articles
+        {props.user.id ?
+          <>
+            <span className="username">Home</span>
+            <img
+              className="img-nav"
+              src={props.user.img_avatar}
+              alt="avatar"
+            />
+          </>
+          : 'Login / Register'
+        }
       </Link>
       {props.user.id && (
         <>
@@ -27,6 +34,26 @@ const Nav = (props) => (
           <LogOutButton className="nav-link" />
         </>
       )}
+      {/* <Link className="nav-link" to="/articles">
+        View Printing Press Articles
+      </Link> */}
+    </div>
+    <div className="nav-articles">
+      <Link className="nav-link" to="/articles">
+        View All Articles
+      </Link>
+      <Link className="nav-link" to="/articles">
+        Tech
+      </Link>
+      <Link className="nav-link" to="/articles">
+        React
+      </Link>
+      <Link className="nav-link" to="/articles">
+        HTML
+      </Link>
+      <Link className="nav-link" to="/articles">
+        Javascript
+      </Link>
     </div>
   </div>
 );

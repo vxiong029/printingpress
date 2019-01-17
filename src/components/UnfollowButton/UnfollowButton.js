@@ -8,7 +8,7 @@ const UnfollowButton = props => (
       payload: props.blogId
     })}
   >
-    Unfollow
+    X
   </button>
 );
 

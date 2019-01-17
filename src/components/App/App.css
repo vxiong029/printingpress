@@ -1,24 +1,50 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0px;
+  font-family: -apple-system, Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0px;
+}
+
+#bg {
+	background-image: linear-gradient(0deg, #FFFFFF 0%, #FFE188 100%);
+	clip-path: polygon(0 0, 100% 0%, 100% 49%, 0 83%);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+#container {
+	width: 70%;
+  padding-top: 20px;
+  margin: 0 auto;
+	text-align: center;
 }
 
 .alert {
-    background-color: #ff4545;
-    margin: 50px;
+  background-color: #ff4545;
+  margin: 50px;
 }
 
 form {
-    width: 30%;
-    height: auto;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
+  width: 30%;
+  height: auto;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 2px;
+}
+
+h1 {
+	color: #01c3e8;
+	padding: 5px;
+}
+
+h2, h3 {
+	padding: 5px;
 }
 
 input {
-    margin: 5px;
-    margin-bottom: 10px;
+  margin: 5px;
+  margin-bottom: 10px;
 }
 
 .log-in, .log-out, .register {
@@ -37,12 +63,25 @@ input {
 
 /* This line makes the "Register" and "Login" buttons look like links */
 .link-button {
-    background:none;
-    color:inherit;
-    border:none;
-    padding:0;
-    font: inherit;
-    outline:0;
-    border-bottom:1px solid #444; 
-    cursor: pointer;
+  background:none;
+  color:inherit;
+  border:none;
+  padding:0;
+  font: inherit;
+  outline:0;
+  border-bottom:1px solid #444; 
+  cursor: pointer;
 }
+
+/* .delete-div {
+	padding-top: -2px;
+	padding: 12px;
+} */
+
+.delete-button {
+	display: inline-block;
+  float: right;
+	margin:	3px 3px 0 0;
+}
+
+

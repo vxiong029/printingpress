@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
+import ArticleNav from '../Nav/ArticleNav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
@@ -20,6 +21,11 @@ import ReadArticle from '../ReadArticle/ReadArticle';
 
 import './App.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faCalendar);
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
@@ -29,6 +35,7 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
+          <ArticleNav />
           <Switch>
             {/* Printing Press Home page */}
             <Route

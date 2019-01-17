@@ -15,8 +15,6 @@ router.get('/:id', (req, res) => {
                     WHERE "blog_posts".id = $1; `;
 
   let id = req.params.id;
-  console.log('what is this', id);
-  
 
   pool.query(queryString, [id])
     .then((result) => {

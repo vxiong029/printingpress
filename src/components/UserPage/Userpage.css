@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+.user-link {
+  color: #30BCE2;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* #user-img {
+	width: 70px;
+  height: 70px;
+  border-radius: 50%;
+	padding: 0px;
+}
+
+#user-profile {
+	position: fixed;
+  z-index: 1;
+  top: 170px;
+	left: 30px;
+	border-top: 5px solid #fbe552;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbe552), to(transparent)); 
+	background-image: -webkit-linear-gradient(#fbe552, transparent); 
+	background-image: -moz-linear-gradient(#fbe552, transparent), -moz-linear-gradient(#fbe552, transparent); 
+	background-image: -o-linear-gradient(#fbe552, transparent), -o-linear-gradient(#fbe552, transparent); 
+	background-image: linear-gradient(#fbe552, transparent), linear-gradient(#fbe552, transparent); 
+	-moz-background-size: 5px 100%; 
+	background-size: 5px 100%; 
+	background-position: 0 0, 100% 0; 
+	background-repeat: no-repeat; 
+	border-radius: 5%;
+	width: 200px;
+	padding: 10px;
+	text-align: center;
+} */
+
+.img-art {
+  width: 100px;
+  height: 100px;
+  float: left;
+  border: 5px solid #FFF;
+}
+
+#article-feed {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.articles {
+  float: left;
+  background: #FFF;
+  border: 1px solid #cac9ca;
+	width: 600px;
+	height: 250px;
+	padding: 10px;
+  text-align: center;
+  margin: 5px;
+}
+
+.articles:hover {
+	background: #fbe552;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	border: 0px;
+}
+
+.img-sub-container {
+  padding-top: 30px;
+}
+
+.img-sub {
+	width: 70px;
+  height: 70px;
+  border-radius: 50%;
+	padding: 0px;
+}
+
+#sub-container {
+  width: 100%;
+}
+
+#subscription-feed {
+	display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.subscriptions {
+  float: left;
+  background: #FFF;
+  border: 1px solid #cac9ca;
+	width: 250px;
+	height: 250px;
+	padding: 10px;
+  text-align: center;
+  margin: 5px;
+}
+
+.subscriptions:hover {
+	background: #fbe552;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	border: 0px;
+}
+
+
+
+
+
