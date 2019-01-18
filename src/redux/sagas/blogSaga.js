@@ -97,7 +97,7 @@ function* createComment(action) {
     yield call(axios.post, '/api/comments/post', action.payload);
     yield put({
       type: 'LOAD_COMMENTS',
-      payload: action.payload
+      payload: action.payload.id
     });
   } catch (error) {
     console.log('Error with user create comment post:', error);
@@ -114,7 +114,7 @@ function* getComments(action) {
       payload: comments.data
     });
   } catch (error) {
-    console.log('Error with user create comment post:', error);
+    console.log('Error with user get comment post:', error);
   }
 }
 

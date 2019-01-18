@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import pplogo from './pplogo.svg';
 
 class Home extends Component {
   render() {
     return (
       <div>
         <header>
-          <h1>Printing Press Home</h1>
+          {/* <img 
+            className="App-logo" 
+            src={pplogo} 
+            alt="logo" 
+          /> */}
+          <h1>Printing Press</h1>
         </header>
       </div>
     )

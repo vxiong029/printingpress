@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 524 611" style="enable-background:new 0 0 524 611;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{opacity:0.59;fill:none;stroke:#30BCE2;stroke-width:8;stroke-miterlimit:10;}
+	.st2{fill:#FCFCFC;}
+	.st3{font-family:'CenturyGothicPro-Bold';}
+	.st4{font-size:160.1753px;}
+	.st5{fill:#30BCE2;}
+	.st6{fill:#444444;}
+	.st7{font-size:24px;}
+	.st8{fill:#F4F4F4;}
+</style>
+<g id="Layer_1">
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-62.6676" y1="108.5435" x2="541.6676" y2="457.4565">
+		<stop  offset="0.2299" style="stop-color:#FCFC00"/>
+		<stop  offset="0.3785" style="stop-color:#FAF50D"/>
+		<stop  offset="0.6539" style="stop-color:#F5E42F"/>
+		<stop  offset="1" style="stop-color:#EDC963"/>
+	</linearGradient>
+	<rect class="st0" width="479" height="566"/>
+</g>
+<g id="Layer_2">
+	<rect x="41" y="40" class="st1" width="479" height="566"/>
+</g>
+<g id="Layer_3">
+	<text transform="matrix(1.1756 0 0 1 59.0566 192.4434)" class="st2 st3 st4">PP</text>
+	<text transform="matrix(1.1756 0 0 1 70.0566 199.4434)" class="st5 st3 st4">PP</text>
+</g>
+<g id="Layer_4">
+	<text transform="matrix(1 0 0 1 97.2271 259.6172)" class="st6 st3 st7">Read</text>
+	<rect x="166" y="244" class="st8" width="298" height="6"/>
+	<rect x="166" y="257" class="st8" width="298" height="6"/>
+	<rect x="106" y="271" class="st8" width="298" height="6"/>
+	<rect x="106" y="286" class="st8" width="337" height="6"/>
+</g>
+<g id="Layer_5">
+	<text transform="matrix(1 0 0 1 96.8604 330.1992)" class="st6 st3 st7">Write</text>
+	<rect x="166" y="312" class="st8" width="298" height="6"/>
+	<rect x="166" y="325" class="st8" width="298" height="6"/>
+	<rect x="106" y="339" class="st8" width="347" height="6"/>
+	<rect x="106" y="354" class="st8" width="337" height="6"/>
+</g>
+<g id="Layer_6">
+	<text transform="matrix(1 0 0 1 96.8711 400.1191)" class="st6 st3 st7">Speak</text>
+	<rect x="173" y="384" class="st8" width="272" height="6"/>
+	<rect x="173" y="397" class="st8" width="285" height="6"/>
+	<rect x="108" y="411" class="st8" width="329" height="6"/>
+	<rect x="108" y="426" class="st8" width="337" height="6"/>
+	<rect x="108" y="441" class="st8" width="316" height="6"/>
+</g>
+<g id="Layer_7">
+	<text transform="matrix(1 0 0 1 98.5801 483.3994)" class="st6 st3 st7">Teach</text>
+	<rect x="173" y="466" class="st8" width="272" height="6"/>
+	<rect x="173" y="479" class="st8" width="285" height="6"/>
+	<rect x="108" y="493" class="st8" width="350" height="6"/>
+	<rect x="108" y="508" class="st8" width="300" height="6"/>
+	<rect x="108" y="523" class="st8" width="316" height="6"/>
+</g>
+</svg>
