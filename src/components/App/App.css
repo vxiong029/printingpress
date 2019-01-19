@@ -15,20 +15,11 @@ body {
   font: -apple-system;
 }
 
-#bg {
-	background-image: linear-gradient(0deg, #FFFFFF 0%, #FFE188 100%);
-	clip-path: polygon(0 0, 100% 0%, 100% 49%, 0 83%);
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: -1;
-}
-
 #container {
 	width: 70%;
   padding-top: 20px;
   margin: 0 auto;
+  margin-bottom: 60px;
   text-align: center;
   /* background: blue; */
 }
@@ -73,7 +64,7 @@ h2 span {
   padding: 10px; 
   margin: 0px;
   font-size: 34px;
-  font-weight: 300;
+  font-weight: 270;
 }
 
 input {
@@ -152,4 +143,42 @@ input {
   margin-left: 130px;
   font-size: 18px;
   font-weight: 250;
+}
+
+.comment-article {
+  border-top: 5px solid #FCFC00;
+  width: 640px;
+  margin-top: 40px;
+  margin-left: 130px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.comment-article-editor {
+  width: 350px;
+  height: 200px;
+  overflow: scroll;
+  margin-top: 20px;
+  margin-left: 146px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.comment-article-editor:hover {
+  border: 1px solid #000;
+  width: 350px;
+  height: 200px;
+  overflow: scroll;
+  margin-top: 20px;
+  margin-left: 146px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.article-read-comments {
+  border: 1px solid #000;
+  padding: 10px;
+  margin: 5px;
+  height: auto;
+  text-align: left;
 }

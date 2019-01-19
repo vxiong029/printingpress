@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 // component imports
 import ReadMoreButton from '../ReadMoreButton/ReadMoreButton';
 
+// icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import './ViewAllArticles.css';
+
 class ViewAllArticles extends Component {
   // load all articles 
   componentDidMount() {
@@ -12,27 +17,46 @@ class ViewAllArticles extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Articles</h1>
+      <div id="container">
+        <h1>View All Articles</h1>
+        <div className="viewall-articles-feed">
         {this.props.blog.map(post => {
           return (
-            <div key={post.id}>
-              <h2>{post.title}</h2>
+            <div key={post.id} className="viewall-articles">
+              <h3>{post.title}</h3>
               <img
                 alt={post.title}
                 src={post.img_header}
-                width="100"
-                height="100"
+                className="img-sub"
               />
-              <p>{post.date}</p>
-              <p>Category: {post.name}</p>
-              <p>Author: {post.full_name}</p>
+              <p>
+                <FontAwesomeIcon
+                  icon="calendar"
+                />
+                {' '}
+                {post.date}
+                {' '}
+                {' '}
+                <FontAwesomeIcon
+                  icon="folder"
+                />
+                {' '}
+                {post.name}
+                <br />
+                <FontAwesomeIcon
+                  icon="user"
+                />
+                {' '}
+                {' '}
+                {post.full_name}
+              </p>
               <ReadMoreButton
                 postId={post.id}
               />
             </div>
           )
         })}
+        </div>
       </div>
     )
   }

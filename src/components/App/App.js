@@ -36,7 +36,8 @@ import { faCalendar,
   faCopy,
   faUsers,
   faTrash,
-  faFolder
+  faFolder,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faCss3Alt,
@@ -60,7 +61,8 @@ library.add(fab,
   faCopy,
   faUsers,
   faTrash,
-  faFolder
+  faFolder,
+  faUser
 );
 
 class App extends Component {

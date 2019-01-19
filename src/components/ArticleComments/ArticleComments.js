@@ -1,6 +1,11 @@
 // react/redux imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+// icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 // css import
 import '../CreatePost/CreatePost.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
@@ -71,7 +76,7 @@ class ArticleComments extends Component {
     if (this.props.user.id) {
       comments =
         <div>
-          <div onClick={this.focus}>
+          <div className="comment-article-editor" onClick={this.focus}>
             <Editor
               editorState={this.state.editorState}
               onChange={this.handleContentChange}
@@ -94,26 +99,46 @@ class ArticleComments extends Component {
                 )
               }
             </InlineToolbar>
-            <p>
-              <button onClick={() => this.submitPost(this.props.readArticle.id)}>Submit</button>
-            </p>
           </div>
+          <p>
+            <button 
+              className="submit-post-button"
+              onClick={() => this.submitPost(this.props.readArticle.id)}
+            >
+                Submit
+            </button>
+          </p>
         </div>
-    } 
+    }
     return (
-      <div>
+      <div className="comment-article">
         <h3>Comments</h3>
         {comments}
         {this.props.comments.map(comment => {
           return (
-            <div key={comment.id}>
-              <h3>{comment.full_name}</h3>
-              <img 
+            <div
+              key={comment.id}
+              className="article-read-comments"
+            >
+              <Link
+                className="username"
+                to={`/articles/user/${comment.person_id}`}>
+                <span>{comment.full_name}</span>
+              </Link>
+              
+              <img
                 src={comment.img_avatar}
                 alt={comment.img_avatar}
+                className="img-sub"
                 align="left"
               />
-              <p>{comment.date}</p>
+              <p>
+                <FontAwesomeIcon
+                  icon="calendar"
+                />
+                {' '}
+                {comment.date}
+              </p>
               <div dangerouslySetInnerHTML={{ __html: this.convertContent(comment.comment_text) }} >
               </div>
             </div>

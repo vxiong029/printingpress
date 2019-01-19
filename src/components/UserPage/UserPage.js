@@ -42,7 +42,7 @@ class UserPage extends Component {
         {new Date().toLocaleString()}
         <div>
           <h3>Subscription Feed</h3>
-          <div id="subscription-feed">
+          <div className="subscription-feed">
             {this.props.subscription.map(userBlog => {
               return (
                 <div

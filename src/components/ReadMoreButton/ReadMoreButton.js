@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 const ReadMoreButton = props => (
   <button
+    className="read-more-button"
     onClick={() => {
       // props.dispatch({
       //   type: 'READ_ARTICLE',

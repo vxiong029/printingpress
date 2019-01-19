@@ -9,7 +9,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.get('/:id', (req, res) => {
   const queryString = `SELECT "comment_posts".id, to_char("comment_posts".date, 'Mon DD, YYYY') 
                     AS "date", "comment_posts".comment_text, "person".full_name, 
-                    "person".img_avatar, "blog_posts".id AS "blog_post_id" FROM "comment_posts"
+                    "person".img_avatar, "person".id AS "person_id", "blog_posts".id 
+                    AS "blog_post_id" FROM "comment_posts"
                     JOIN "blog_posts" ON "comment_posts".blog_posts_id = "blog_posts".id
                     JOIN "person" ON "comment_posts".person_id = "person".id
                     WHERE "blog_posts".id = $1; `;

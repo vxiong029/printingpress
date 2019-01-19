@@ -9,7 +9,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.get('/:id', (req, res) => {
   const queryString = `SELECT "blog_posts".id, "blog_posts"."category_id", 
                     to_char("blog_posts".date, 'Mon DD, YYYY') AS "date", 
-                    "blog_posts".title, "blog_posts".img_header, "category".name 
+                    "blog_posts".title, "blog_posts".img_header, "category".name,
+                    "person".id AS "person_id", "person".full_name 
                     FROM "blog_posts" JOIN "person" ON "blog_posts".person_id = "person".id
                     JOIN "category" ON "blog_posts".category_id = "category".id
                     WHERE "person".id = $1 ORDER BY "id" DESC;`;

@@ -78,6 +78,7 @@
 .articles:hover {
   float: left;
   background: #fbe552;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   border: 0px solid #cac9ca;
 	width: 600px;
 	height: 70px;
@@ -111,14 +112,14 @@
 	width: 70px;
   height: 70px;
   border-radius: 50%;
-	padding: 0px;
+	padding: 5px;
 }
 
 #sub-container {
   width: 100%;
 }
 
-#subscription-feed {
+.subscription-feed {
 	display: flex;
   flex-wrap: wrap;
   align-content: space-between;

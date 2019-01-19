@@ -1,0 +1,38 @@
+.viewall-articles-feed {
+	display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.viewall-articles {
+  float: left;
+  background: #FFF;
+  border: 1px solid #cac9ca;
+	width: 250px;
+	height: 250px;
+	padding: 10px;
+  text-align: center;
+  margin: 5px;
+}
+
+.viewall-articles:hover {
+	background: #fbe552;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	border: 0px;
+}
+
+.read-more-button {
+  border: 0px;
+  border-left: 5px solid #FCFC00;
+  font-size: 15px;
+  font-weight: 300;
+  background: none;
+}
+
+.read-more-button:hover {
+  border: 0px;
+  border-left: 15px solid #FCFC00;
+  font-size: 15px;
+  background: none;
+}

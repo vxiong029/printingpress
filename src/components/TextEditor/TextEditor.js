@@ -199,15 +199,29 @@ class TextEditor extends Component {
               alt="img-avatar"
               className="img-nav"
             />
-            <h2>
+            {/* <h3>
               {this.props.readArticle.full_name}
-            </h2>
+            </h3> */}
 
-            {this.props.readArticle.description}
+            <Link
+              className="username"
+              to={`/articles/user/${this.props.readArticle.blog_id}`}>
+              <br />
+              <span>{this.props.readArticle.full_name}</span>
+            </Link>
+
+            <p>
+              {this.props.readArticle.description}
+            </p>
             {this.props.user.full_name !== this.props.readArticle.full_name &&
               <>
                 <p>
-                  <button onClick={() => this.followBlog(this.props.readArticle.blog_id)}>Follow</button>
+                  <button 
+                    className="submit-post-button"
+                    onClick={() => this.followBlog(this.props.readArticle.blog_id)}
+                  >
+                    Follow
+                  </button>
                 </p>
               </>
             }
@@ -217,12 +231,15 @@ class TextEditor extends Component {
                   <button onClick={this.toggle}>Edit</button>
                 </p> */}
                 <p>
-                  <button onClick={() => this.handleEdit(this.props.readArticle.id)}>Save Edit</button>
-                  <Link to="/articles">
-                    <DeleteArticleButton
-                      postId={this.props.readArticle.id}
-                    />
-                  </Link>
+                  <button
+                    className="submit-post-button"
+                    onClick={() => this.handleEdit(this.props.readArticle.id)}
+                  >
+                    Save Edit
+                  </button>
+                  <DeleteArticleButton
+                    postId={this.props.readArticle.id}
+                  />
                 </p>
               </>
             }
@@ -266,7 +283,11 @@ class TextEditor extends Component {
     } else {
       content =
         <div>
-          <h2>{this.props.readArticle.title}</h2>
+          <h2>
+            <span>
+              {this.props.readArticle.title}
+            </span>
+          </h2>
           <div className="editor-read-article" onClick={this.focus}>
             <Editor
               editorState={this.state.editorState}
