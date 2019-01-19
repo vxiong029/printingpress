@@ -7,8 +7,8 @@ body {
   float: right;
   padding: 10px;
   padding-right: 40px;
-  width: 43%;
-  height: 48%;
+  width: 45%;
+  height: 47%;
 }
 
 .logo-text {
@@ -99,9 +99,9 @@ input {
 /* HOME.JS css */
 #home-container {
   float: left;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-top: 140px;
-  width: 55%;
+  width: 50%;
   text-align: center;
   /* background: #ff4545; */
 }
@@ -119,31 +119,33 @@ input {
   font-weight: 200;
   font-size: 30px;
   margin: 0px;
-  
+  /* background: #000; */
   width: 100%;
 }
 
-/* .category-one {
+.category-one {
   list-style-type: none;
   font-weight: 200;
   font-size: 30px;
   margin: 0px;
   margin-left: 10px;
-} */
-.category-one, .category-last {
+  width: 70%;
+}
+
+.category-last {
   list-style-type: none;
   font-weight: 200;
   font-size: 30px;
-  margin: 0px;
-  margin-left: 70px;
+  margin-top: -38px;
+  margin-left: 10px;
   /* background: #ff4545; */
   width: 70%;
 }
 
 .category li {
-  padding: 0px;
-  width: 100%;
-  background: #00acb0;
+  margin-left: -40px;
+  width: 110%;
+  /* background: #00acb0; */
 }
 
 /* .category-link-blue {
