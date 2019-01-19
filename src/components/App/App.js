@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import Nav from '../Nav/Nav';
 import UserNav from '../Nav/UserNav';
 import ArticleNav from '../Nav/ArticleNav';
+import UserPageNav from '../UserPage/UserPageNav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
@@ -29,7 +30,12 @@ import { faCalendar,
   faCode, 
   faLaptopCode,
   faProjectDiagram,
-  faEye
+  faEye,
+  faHome,
+  faPencilAlt,
+  faCopy,
+  faUsers,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faCss3Alt,
@@ -47,7 +53,12 @@ library.add(fab,
   faLaptopCode,
   faReact,
   faProjectDiagram,
-  faEye
+  faEye,
+  faHome,
+  faPencilAlt,
+  faCopy,
+  faUsers,
+  faTrash
 );
 
 class App extends Component {
@@ -61,6 +72,11 @@ class App extends Component {
           <Nav />
           <UserNav />
           <ArticleNav />
+          {this.props.user.id &&
+            (
+              <UserPageNav />
+            )
+          }
           <Switch>
             {/* Printing Press Home page */}
             <Route
@@ -92,6 +108,7 @@ class App extends Component {
               path="/user"
               component={UserPage}
             />
+
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
@@ -99,8 +116,7 @@ class App extends Component {
               path="/createPost"
               component={CreatePost}
             />
-            {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <h1>404</h1>} />
+            
           </Switch>
           <Footer />
         </div>

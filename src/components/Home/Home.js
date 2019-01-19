@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import pplogo from './pplogo.svg';
 import { Link } from 'react-router-dom';
+import './Home.css';
 
 // icon imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

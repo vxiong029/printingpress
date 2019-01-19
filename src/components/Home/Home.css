@@ -1,0 +1,56 @@
+/* HOME.JS css */
+#home-container {
+  float: left;
+  margin-left: 80px;
+  margin-top: 140px;
+  width: 580px;
+  text-align: center;
+  height: 260px;
+  overflow: hidden;
+  /* background: #ff4545; */
+}
+
+.icons {
+  float: left;
+  margin-top: 5px;
+}
+
+.category {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style-type: none;
+  font-weight: 200;
+  font-size: 30px;
+  /* background: #008183; */
+  /* width: 100%;   */
+  margin-left: -10px;
+  height: 255px;
+  padding: 0px;
+}
+
+.category li {
+  /* background: #00acb0; */
+  /* width: 115%; */
+  /* margin-left: -39px; */
+  margin: 0px;
+  padding: 0px;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  /* border-left: 3px solid #FCFC00; */
+  /* transition: background-size 0.30s ease-out; */
+}
+
+li a:hover {
+  background-image: linear-gradient(90deg, #FCFC00 0%, #FFF 50%);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease-in;
+  background-size: 100% 100%;
+  border-left: 0px;
+}

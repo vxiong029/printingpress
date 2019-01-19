@@ -1,34 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Nav.css';
 
-const ArticleNav = () => (
+const ArticleNav = (props) => (
   <div className="nav-articles">
-    <Link className="nav-article-link" to="/articles">
-      VIEW ALL
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      CSS
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      DESIGN
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      HTML
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      JAVASCRIPT
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      JQUERY
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      REACT
-    </Link>
-    <Link className="nav-article-link" to="/articles">
-      TECH
-    </Link>
+    {props.location.pathname !== '/' &&
+      <>
+      <Link className="nav-article-link" to="/articles">
+        VIEW ALL
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        CSS
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        DESIGN
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        HTML
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        JAVASCRIPT
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        JQUERY
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        REACT
+      </Link>
+      <Link className="nav-article-link" to="/articles">
+        TECH
+      </Link>
+      </>
+    }
   </div>
 );
 
@@ -41,4 +45,4 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(ArticleNav);
+export default withRouter(connect(mapStateToProps)(ArticleNav));
