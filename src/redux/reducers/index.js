@@ -6,6 +6,7 @@ import blog from './blogReducer';
 import readArticle from './readArticleReducer';
 import subscription from './subscriptionReducer';
 import comments from './commentReducer';
+import userArticles from './userArticlesReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   blog,
   readArticle,
   subscription,
-  comments
+  comments,
+  userArticles
 });
 
 export default rootReducer;

@@ -13,6 +13,7 @@ const blogRouter = require('./routes/blog.router');
 const subscriptionRouter = require('./routes/subscription.router');
 const userBlogRouter = require('./routes/userBlog.router');
 const commentsRouter = require('./routes/comments.router');
+const userArticlesRouter = require('./routes/userArticles.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/blog', blogRouter);
 app.use('/api/userBlog', userBlogRouter);
 app.use('/api/subscription', subscriptionRouter);
 app.use('/api/comments', commentsRouter);
+app.use('/api/userArticles', userArticlesRouter);
 
 // Serve static files
 app.use(express.static('build'));

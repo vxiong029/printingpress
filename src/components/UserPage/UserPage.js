@@ -81,7 +81,11 @@ class UserPage extends Component {
                         alt={userBlog.img_avatar}
                       />
                     </div>
-                    <h3>{userBlog.full_name}</h3>
+                  
+                    <Link 
+                      to={`/articles/user/${userBlog.sub_blog_id}`}>
+                        <h3>{userBlog.full_name}</h3>
+                    </Link>
                     <p>{userBlog.description}</p>
                   </div>
                 )

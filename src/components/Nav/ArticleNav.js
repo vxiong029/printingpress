@@ -7,19 +7,19 @@ const ArticleNav = () => (
   <div className="nav-articles">
     <Link className="nav-article-link" to="/articles">
       VIEW ALL
-      </Link>
+    </Link>
     <Link className="nav-article-link" to="/articles">
       TECH
-      </Link>
+    </Link>
     <Link className="nav-article-link" to="/articles">
       REACT
-      </Link>
+    </Link>
     <Link className="nav-article-link" to="/articles">
       HTML
-      </Link>
+    </Link>
     <Link className="nav-article-link" to="/articles">
       JAVASCRIPT
-      </Link>
+    </Link>
   </div>
 );
 

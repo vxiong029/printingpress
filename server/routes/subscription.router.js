@@ -15,11 +15,13 @@ router.get('/', (req, res) => {
                     JOIN "blog" ON "blog".id = "subscription_feed".blog_id 
                     JOIN "person" ON "person".id = "blog".person_id 
                     WHERE "subscription_feed".person_id = $1;`;
+
   let id = req.user.id;
 
   pool.query(queryString, [id])
     .then((result) => {
       res.send(result.rows);
+      // console.log('sub feed', result.rows);
     })
     .catch((err) => {
       console.log('Error completing SELECT get query', err);

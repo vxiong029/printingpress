@@ -18,13 +18,36 @@ import UserPage from '../UserPage/UserPage';
 import CreatePost from '../CreatePost/CreatePost';
 import ViewAllArticles from '../ViewAllArticles/ViewAllArticles';
 import ReadArticle from '../ReadArticle/ReadArticle';
+import UserArticles from '../UserArticles/UserArticles';
 
 import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faCalendar, 
+  faCode, 
+  faLaptopCode,
+  faProjectDiagram,
+  faEye
+} from '@fortawesome/free-solid-svg-icons';
+import { 
+  faCss3Alt,
+  faSketch,
+  faJs,
+  faReact,
+} from '@fortawesome/free-brands-svg-icons';
 
-library.add(faCalendar);
+library.add(fab, 
+  faCalendar, 
+  faCss3Alt, 
+  faSketch, 
+  faCode,
+  faJs,
+  faLaptopCode,
+  faReact,
+  faProjectDiagram,
+  faEye
+);
 
 class App extends Component {
   componentDidMount() {
@@ -53,7 +76,11 @@ class App extends Component {
               path="/articles/:id"
               component={ReadArticle}
             />
-
+            <Route
+              exact
+              path="/articles/user/:id"
+              component={UserArticles}
+            />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
