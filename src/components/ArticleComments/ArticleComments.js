@@ -102,7 +102,7 @@ class ArticleComments extends Component {
     } 
     return (
       <div>
-        <h2>Comments</h2>
+        <h3>Comments</h3>
         {comments}
         {this.props.comments.map(comment => {
           return (

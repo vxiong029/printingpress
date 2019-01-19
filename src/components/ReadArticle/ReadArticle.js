@@ -19,7 +19,7 @@ class ReadArticle extends Component {
   }
   render() {
     return (
-      <div key={this.props.readArticle.id}>
+      <div id="container" key={this.props.readArticle.id}>
         <h2>{this.props.match.params.id}</h2>
         <TextEditor
         />

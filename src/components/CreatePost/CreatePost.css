@@ -11,6 +11,8 @@
   height: 800px;
   overflow: scroll;
   text-align: left;
+  font-size: 18px;
+  font-weight: 250;
   /* font-family: century; */
 }
 

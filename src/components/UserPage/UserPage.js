@@ -41,7 +41,7 @@ class UserPage extends Component {
         {' '}
         {new Date().toLocaleString()}
         <div>
-          <h2>Subscription Feed</h2>
+          <h3>Subscription Feed</h3>
           <div id="subscription-feed">
             {this.props.subscription.map(userBlog => {
               return (
@@ -74,7 +74,7 @@ class UserPage extends Component {
               )
             })}
           </div>
-          <h2>My Articles</h2>
+          <h3>My Articles</h3>
           <div id="article-feed">
             {this.props.blog.map(post => {
               return (

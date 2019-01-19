@@ -27,7 +27,8 @@ router.get('/', (req, res) => {
  */
 router.get('/:id', (req, res) => {
   const queryString = `SELECT "blog_posts".id, "person".full_name, "person".description,
-                    "blog".id AS "blog_id", "title", to_char("date", 'Mon DD, YYYY') AS "date", 
+                    "person".img_avatar, "blog".id AS "blog_id", "title", 
+                    to_char("date", 'Mon DD, YYYY') AS "date", 
                     "category".name, "category".id AS "category_id", "img_header", 
                     "blog_content" FROM "blog_posts" 
                     JOIN "person" ON "blog_posts".person_id = "person".id 

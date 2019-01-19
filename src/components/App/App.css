@@ -51,9 +51,29 @@ h1 {
 	padding: 5px;
 }
 
-h2, h3, h6 {
-  padding: 5px;
+h3, h6 {
+  padding: 2px;
   margin: 0px;
+}
+
+h2 {
+  position: absolute; 
+  top: 580px; 
+  left: 0; 
+  width: 100%; 
+}
+
+h2 span { 
+  display: block;
+  color: #01c3e8; 
+  /* font: bold 24px/45px Helvetica, Sans-Serif;  */
+  letter-spacing: -1px;  
+  background: rgb(0, 0, 0); /* fallback color */
+  background: #FFF;
+  padding: 10px; 
+  margin: 0px;
+  font-size: 34px;
+  font-weight: 300;
 }
 
 input {
@@ -114,6 +134,22 @@ input {
   color: #000;
 }
 
+.img-header {
+  width: 600px;
+  height: 480px;
+  border-top: 22px solid #FCFC00;
+  border-left: 22px solid #FCFC00;
+  border-right: 22px solid #FCFC00;
+  position: relative; 
+}
 
-
-
+.editor-read-article {
+  width: 640px;
+  background: #FFFFFF;
+  text-align: left;
+  /* border: 2px solid #000; */
+  margin-top: 20px;
+  margin-left: 130px;
+  font-size: 18px;
+  font-weight: 250;
+}
