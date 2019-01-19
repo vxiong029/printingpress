@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const DeleteArticleButton = props => (
-  <button
-    onClick={() => props.dispatch({ 
+  <FontAwesomeIcon
+    onClick={() => props.dispatch({
       type: 'DELETE_ARTICLE',
-      payload: props.postId 
+      payload: props.postId
     })}
-  >
-    Delete
-  </button>
+    icon="trash"
+  />
 );
 
 export default connect()(DeleteArticleButton);

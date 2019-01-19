@@ -13,46 +13,48 @@ class UserPageNav extends Component {
   render() {
     return (
       <div>
-        <div id="dashboard-nav">
-          <ul className="dashboard-nav-ul">
-            <li>
-              <Link to="/user">
-                <FontAwesomeIcon
-                  icon="home"
-                  className="icons"
-                />
-                Dashboard
+        {this.props.location.pathname !== '/' && (
+          <div id="dashboard-nav">
+            <ul className="dashboard-nav-ul">
+              <li>
+                <Link to="/user">
+                  <FontAwesomeIcon
+                    icon="home"
+                    className="icons"
+                  />
+                  Dashboard
                 </Link>
-            </li>
-            <li>
-              <Link to="/createPost">
-                <FontAwesomeIcon
-                  icon="pencil-alt"
-                  className="icons"
-                />
-                Write an Article
+              </li>
+              <li>
+                <Link to="/createPost">
+                  <FontAwesomeIcon
+                    icon="pencil-alt"
+                    className="icons"
+                  />
+                  Write an Article
                 </Link>
-            </li>
-            <li>
-              <Link to="/user">
-                <FontAwesomeIcon
-                  icon="copy"
-                  className="icons"
-                />
-                My Articles
+              </li>
+              <li>
+                <Link to="/user">
+                  <FontAwesomeIcon
+                    icon="copy"
+                    className="icons"
+                  />
+                  My Articles
                 </Link>
-            </li>
-            <li>
-              <Link to="/user">
-                <FontAwesomeIcon
-                  icon="users"
-                  className="icons"
-                />
-                Subscriptions
+              </li>
+              <li>
+                <Link to="/user">
+                  <FontAwesomeIcon
+                    icon="users"
+                    className="icons"
+                  />
+                  Subscriptions
                 </Link>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     )
   }

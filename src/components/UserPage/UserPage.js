@@ -74,6 +74,51 @@ class UserPage extends Component {
               )
             })}
           </div>
+          <h2>My Articles</h2>
+          <div id="article-feed">
+            {this.props.blog.map(post => {
+              return (
+                <div
+                  key={post.id}
+                  className="articles"
+                >
+                  <span className="delete-button">
+                    <DeleteArticleButton
+                      postId={post.id}
+                    />
+                  </span>
+                  <img
+                    className="img-art"
+                    alt=""
+                    src={post.img_header}
+                  />
+                  <Link
+                    to={`/articles/${post.id}`}
+                    className="articles-feed-titles"
+                  >  
+                    <span>
+                      {post.title}
+                    </span>
+                  </Link>
+                  <p className="articles-feed-details">
+                    <FontAwesomeIcon
+                      icon="calendar"
+                    /> 
+                    {' '}
+                    {post.date} 
+                    {/* <FontAwesomeIcon
+                      icon="folder"
+                    />
+                    {' '}
+                    {post.name} */}
+                  </p>
+                  {/* <ReadMoreButton
+                    postId={post.id}
+                  /> */}
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     )
