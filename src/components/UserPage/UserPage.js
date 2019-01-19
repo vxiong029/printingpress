@@ -34,7 +34,7 @@ class UserPage extends Component {
   render() {
     return (
       <div>
-        <div id="bg"></div>
+        {/* <div id="bg"></div> */}
         <div id="container">
           <h1>Hello, {this.props.user.full_name}!</h1>
           <p>

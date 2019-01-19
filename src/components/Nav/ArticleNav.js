@@ -9,16 +9,25 @@ const ArticleNav = () => (
       VIEW ALL
     </Link>
     <Link className="nav-article-link" to="/articles">
-      TECH
+      CSS
     </Link>
     <Link className="nav-article-link" to="/articles">
-      REACT
+      DESIGN
     </Link>
     <Link className="nav-article-link" to="/articles">
       HTML
     </Link>
     <Link className="nav-article-link" to="/articles">
       JAVASCRIPT
+    </Link>
+    <Link className="nav-article-link" to="/articles">
+      JQUERY
+    </Link>
+    <Link className="nav-article-link" to="/articles">
+      REACT
+    </Link>
+    <Link className="nav-article-link" to="/articles">
+      TECH
     </Link>
   </div>
 );

@@ -12,7 +12,6 @@ const UserNav = (props) => (
         and call this link 'Login / Register' if they are not */}
       {props.user.id ?
         <>
-          {/* <span className="username">Home</span> */}
           <img
             className="img-nav"
             src={props.user.img_avatar}
@@ -24,10 +23,12 @@ const UserNav = (props) => (
     </Link>
     {props.user.id && (
       <>
-        <Link className="nav-link" to="/createPost">
+      <h6 className="nav-user-links">
+        {/* <Link className="nav-link" to="/createPost">
           Create New Post
-          </Link>
+        </Link> */}
         <LogOutButton className="nav-link" />
+      </h6>
       </>
     )}
   </div>

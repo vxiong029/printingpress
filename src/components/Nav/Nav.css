@@ -19,8 +19,15 @@
 .nav-user {
   display: block;
   width: 100%;
-  height: 40px;
   text-align: center;
+  padding: 5px;
+  /* background: #30BCE2; */
+}
+
+.nav-user-links {
+  padding: 0px;
+  margin-top: -20px;
+  margin-bottom: -20px;
 }
 
 .nav-articles {
@@ -57,17 +64,17 @@
 }
 
 .img-nav {
-  align: left;
-  width: 27px;
-  height: 27px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   padding: 0px;
+  filter: grayscale(100%);
+  transition: 0.3s;
 }
 
-.username {
-  color: #FFC200;
-  font-size: 15px;
-  padding-right: 5px;
+.img-nav:hover {
+  filter: grayscale(0%);
+  /* border: 3px solid #FCFC00; */
 }
 
 .nav-articles {
