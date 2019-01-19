@@ -29,7 +29,8 @@ body {
 	width: 70%;
   padding-top: 20px;
   margin: 0 auto;
-	text-align: center;
+  text-align: center;
+  /* background: blue; */
 }
 
 .alert {

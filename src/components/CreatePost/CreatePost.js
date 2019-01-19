@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 // css import
 import '../CreatePost/CreatePost.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
+
+// icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 // draft.js imports
 import {
   EditorState,
@@ -10,7 +14,7 @@ import {
   // convertFromRaw
 } from 'draft-js';
 // allows for plugins to work
-import Editor from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // plugin imports
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
@@ -31,6 +35,8 @@ const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [focusPlugin, inlineToolbarPlugin];
 
+const text = 'Write your article here...';
+
 class CreatePost extends Component {
   // empty state of blog post
   state = {
@@ -40,7 +46,7 @@ class CreatePost extends Component {
       date: new Date().toLocaleString(),
       category_id: 1,
     },
-    editorState: EditorState.createEmpty(),
+    editorState: createEditorStateWithText(text),
     //   editorState: editorStateFromRaw(this.props.readArticle.blog_content)
   }
   // holds the post info
@@ -76,20 +82,37 @@ class CreatePost extends Component {
   }
   render() {
     return (
-      <div>
-        <pre>{JSON.stringify(this.state.newPost)}</pre>
+      <div id="container">
+        <h2>Write An Article</h2>
+        <pre>
+          {/* {JSON.stringify(this.state.editorState)} */}
+        </pre>
         <div className="toolbar">
-          <input
-            type="url"
-            placeholder="Article Image"
-            onChange={this.handleDetailChange('img_header')}
-          />
           <input
             type="text"
             placeholder="Title"
             onChange={this.handleDetailChange('title')}
+            className="input-details-title"
           />
+          <br /> 
+          <input
+            type="url"
+            placeholder="Article Image URL"
+            onChange={this.handleDetailChange('img_header')}
+            className="input-details-img"
+          />
+          <p>
+          <FontAwesomeIcon
+            icon="calendar"
+          />
+          {' '}
           {this.state.newPost.date}
+          </p>
+          <p>
+            <FontAwesomeIcon
+              icon="folder"
+            />
+            {' '}
           <select onChange={this.handleDetailChange('category_id')}>
             <option value={1}>React</option>
             <option value={2}>CSS</option>
@@ -97,7 +120,15 @@ class CreatePost extends Component {
             <option value={4}>Javascript</option>
             <option value={5}>Technology</option>
           </select>
-
+          </p>
+          <div>
+            <button 
+              onClick={this.submitPost}
+              className="submit-post-button"
+            >
+              Submit
+            </button>
+          </div>
         </div>
         <div className="editor" onClick={()=> this.focus}>
           <Editor
@@ -122,9 +153,6 @@ class CreatePost extends Component {
               )
             }
           </InlineToolbar>
-        </div>
-        <div>
-          <button onClick={this.submitPost}>Submit</button>
         </div>
       </div>
     )
