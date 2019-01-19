@@ -77,6 +77,8 @@ class TextEditor extends Component {
         id: id
       }
     });
+
+    alert(`Your article was saved!`);
   }
   // holds the post info
   // handleDetailChange = propertyName => (event) => {
@@ -99,6 +101,8 @@ class TextEditor extends Component {
       type: 'FOLLOW_USER',
       payload: { id: id }
     })
+
+    alert(`You're now following this user!`);
   }
   // focus editor plugin
   focus = () => {
@@ -237,6 +241,7 @@ class TextEditor extends Component {
                   >
                     Save Edit
                   </button>
+
                   <DeleteArticleButton
                     postId={this.props.readArticle.id}
                   />

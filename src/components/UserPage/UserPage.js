@@ -22,15 +22,6 @@ class UserPage extends Component {
       type: 'GET_USER_ARTICLES',
     })
   }
-  // edit button handle click
-  handleEdit = (id) => {
-    console.log('in handle edit', id);
-
-    this.props.dispatch({
-      type: 'EDIT_ARTICLE',
-      payload: id
-    })
-  }
   render() {
     return (
       <div id="container">

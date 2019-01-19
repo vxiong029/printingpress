@@ -69,7 +69,7 @@ function* deleteArticle(action) {
     console.log('deleteArticle saga triggered', action.payload);
     yield call(axios.delete, `/api/blog/${action.payload}`);
     yield put({
-      type: 'GET_ALL_ARTICLE_POSTS'
+      type: 'GET_USER_ARTICLES'
     });
   } catch (error) {
     console.log('Error with user delete article:', error);

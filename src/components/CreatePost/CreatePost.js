@@ -75,6 +75,8 @@ class CreatePost extends Component {
         post_details: this.state.newPost
       }
     });
+
+    alert('Your article was saved!');
   }
   // focus on an object
   focus = () => {
