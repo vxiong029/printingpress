@@ -18,7 +18,11 @@ class Home extends Component {
         </header>
         <div id="home-container">
           {/* first category link */}
-          <ul className="category-one">
+          {/* <ul className="category-one"> */}
+
+          {/* </ul> */}
+          {/* middle category links */}
+          <ul className="category">
             <li>
               <Link className="category-link" to="/articles">
                 <FontAwesomeIcon
@@ -28,9 +32,6 @@ class Home extends Component {
                 View All
                 </Link>
             </li>
-          </ul>
-          {/* middle category links */}
-          <ul className="category">
             <li>
               <Link className="category-link-blue" to="/articles">
                 <FontAwesomeIcon
@@ -86,9 +87,6 @@ class Home extends Component {
                 React
                 </Link>
             </li>
-          </ul>
-          {/* last category link */}
-          <ul className="category-last">
             <li>
               <Link className="category-link" to="/articles">
                 <FontAwesomeIcon
@@ -99,6 +97,10 @@ class Home extends Component {
                 </Link>
             </li>
           </ul>
+          {/* last category link */}
+          {/* <ul className="category-last">
+            
+          </ul> */}
         </div>
       </div>
     )

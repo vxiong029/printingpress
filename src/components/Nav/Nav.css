@@ -1,9 +1,9 @@
 .nav-title {
-  font-size: 28px;
-  font-weight: 700;
-  display: inline-block;
+  font-size: 40px;
+  font-weight: 200;
+  display: block;
   color: #30BCE2;
-  padding-left: 10px;
+  text-align: center;
 }
 
 .nav {
@@ -14,7 +14,13 @@
   /* background: rgb(242, 242, 242, 0.7); */
   /* background: #FFC200; */
   border-bottom: 0px solid #FFC200;
-  height: 80px;
+}
+
+.nav-user {
+  display: block;
+  width: 100%;
+  height: 40px;
+  text-align: center;
 }
 
 .nav-articles {
@@ -37,7 +43,6 @@
 }
 
 .nav-link {
-  float: left;
   color: #FFC200;
   text-align: center;
   padding: 24px 10px;
@@ -52,6 +57,7 @@
 }
 
 .img-nav {
+  align: left;
   width: 27px;
   height: 27px;
   border-radius: 50%;
@@ -59,18 +65,9 @@
 }
 
 .username {
-  float: right;
   color: #FFC200;
   font-size: 15px;
-  padding-left: 5px;
-}
-
-/* .nav-link:hover {
-  color: #008183;
-} */
-
-.nav-right {
-  float: right;
+  padding-right: 5px;
 }
 
 .nav-articles {

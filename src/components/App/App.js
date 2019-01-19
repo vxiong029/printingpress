@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
+import UserNav from '../Nav/UserNav';
 import ArticleNav from '../Nav/ArticleNav';
 import Footer from '../Footer/Footer';
 
@@ -58,6 +59,7 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
+          <UserNav />
           <ArticleNav />
           <Switch>
             {/* Printing Press Home page */}
