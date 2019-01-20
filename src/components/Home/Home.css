@@ -1,7 +1,107 @@
 /* HOME.JS css */
+.app-logo {
+  position: absolute;
+  left: 450px;
+  top: 120px;
+  z-index: 1;
+  width: 73%;
+  height: 78%;
+}
+
+.bluesquare {
+  position: absolute;
+  left: 455px;
+  top: 117px;
+  z-index: 2;
+  width: 73%;
+  height: 78%;
+}
+
+.event-wrapper {
+  max-width: 100px;
+}
+
+.event-wrapper:hover .app-logo {
+  animation: Square1AnimationOut .97s forwards;
+}
+
+.event-wrapper:hover .bluesquare {
+  animation: Square2AnimationOut .97s forwards;
+}
+
+@keyframes Square1AnimationOut {
+ 0% {
+   transform: translate(0px, 0px);
+   webkit-animation-timing-function: ease-in;
+ }
+ 35% {
+   transform: translate(5px, 7px);
+   webkit-animation-timing-function: linear;
+ }
+ 55% {
+  transform: translate(8px, 10px);
+  webkit-animation-timing-function: linear;
+ }
+ 65% {
+  transform: translate(8px, 10px);
+  webkit-animation-timing-function: linear;
+ }
+ 75% {
+  transform: translate(8px, 10px);
+  webkit-animation-timing-function: linear;
+ }
+ 85% {
+  transform: translate(5px, 7px);
+  webkit-animation-timing-function: linear;
+ }
+ 95% {
+  transform: translate(3px, 5px);
+  webkit-animation-timing-function: linear;
+ }
+ 100% {
+   transform: translate(0px, 0px);
+   webkit-animation-timing-function: ease-out;
+ }
+}
+
+@keyframes Square2AnimationOut {
+ 0% {
+   transform: translate(0px, 0px);
+   webkit-animation-timing-function: ease-in;
+ }
+ 35% {
+   transform: translate(-5px, -7px);
+   webkit-animation-timing-function: linear;
+ }
+ 55% {
+  transform: translate(-10px, -10px);
+  webkit-animation-timing-function: linear;
+ }
+ 65% {
+  transform: translate(-10px, -10px);
+  webkit-animation-timing-function: linear;
+ }
+ 75% {
+  transform: translate(-10px, -10px);
+  webkit-animation-timing-function: linear;
+ }
+ 85% {
+  transform: translate(-5px, -7px);
+  webkit-animation-timing-function: linear;
+ }
+ 95% {
+  transform: translate(-3px, -5px);
+  webkit-animation-timing-function: linear;
+ }
+ 100% {
+   transform: translate(0px, 0px);
+   webkit-animation-timing-function: ease-out;
+ }
+}
+
 #home-container {
   float: left;
-  margin-left: 110px;
+  margin-left: 70px;
   margin-top: 100px;
   width: 580px;
   text-align: center;

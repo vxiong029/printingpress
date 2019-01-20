@@ -1,12 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+
+import logo from './logo.svg';
+
 import './Nav.css';
+
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/">
+    <Link 
+      className="nav-logo"
+      to="/">
+      <span>
+        <img 
+          src={logo}
+          className="logo-img"
+          alt="logo"
+        />
+      </span>
       <span className="nav-title">Printing Press</span>
     </Link>
   </div>

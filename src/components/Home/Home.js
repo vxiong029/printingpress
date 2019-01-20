@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import pplogo from './pplogo.svg';
+import gradientbg from './gradientbg.svg';
+import bluesquare from './bluesquare.svg';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -10,13 +11,18 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <header>
+        <div className="event-wrapper">
           <img
-            id="app-logo"
-            src={pplogo}
+            className="app-logo"
+            src={gradientbg}
             alt="logo"
           />
-        </header>
+          <img 
+            className="bluesquare"
+            src={bluesquare}
+            alt="logo"
+          />
+        </div>
         <div id="home-container">
           {/* first category link */}
           {/* <ul className="category-one"> */}

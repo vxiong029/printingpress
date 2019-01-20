@@ -3,18 +3,6 @@ body {
 	margin: 0px;
 }
 
-#app-logo {
-  float: right;
-  padding: 10px;
-  padding-right: 40px;
-  width: 44%;
-  height: 46%;
-}
-
-.logo-text {
-  font: -apple-system;
-}
-
 #container {
 	width: 70%;
   padding-top: 20px;

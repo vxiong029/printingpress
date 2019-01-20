@@ -1,6 +1,14 @@
 .nav-title {
   font-size: 40px;
-  font-weight: 200;
+  font-weight: 100;
+  display: block;
+  color: #000;
+  text-align: center;
+}
+
+.nav-title:hover {
+  font-size: 40px;
+  font-weight: 100;
   display: block;
   color: #30BCE2;
   text-align: center;
@@ -75,6 +83,19 @@
   border:none;
   cursor: pointer;
   outline:0;
+}
+
+.nav-logo {
+  text-decoration: none;
+}
+
+.logo-img {
+  position: absolute;
+  top: 6px;
+  left: 500px;
+  z-index: -1;
+  width: 40px;
+  height: 40px;
 }
 
 .img-nav {
