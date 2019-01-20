@@ -10,6 +10,7 @@ const DeleteArticleButton = props => (
       type: 'DELETE_ARTICLE',
       payload: props.postId
     })}
+    
     icon="trash"
     className="delete-button"
   />
