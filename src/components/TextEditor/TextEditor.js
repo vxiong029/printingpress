@@ -301,7 +301,6 @@ class TextEditor extends Component {
               ref={(element) => { this.editor = element; }}
               data={this.props.readArticle.blog_content}
               readOnly
-              className="editor-read-article"
             />
           </div>
         </div>

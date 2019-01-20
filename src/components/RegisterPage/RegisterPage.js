@@ -39,7 +39,7 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div id="container">
         {this.props.errors.registrationMessage && (
           <h2
             className="alert"
@@ -48,9 +48,6 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <p>
-          {JSON.stringify(this.state)}
-        </p>
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
@@ -61,6 +58,7 @@ class RegisterPage extends Component {
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
+                className="input-login"
               />
             </label>
           </div>
@@ -72,6 +70,7 @@ class RegisterPage extends Component {
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                className="input-login"
               />
             </label>
           </div>
@@ -83,17 +82,20 @@ class RegisterPage extends Component {
                 name="full name"
                 value={this.state.full_name}
                 onChange={this.handleInputChangeFor('full_name')}
+                className="input-login"
               />
             </label>
           </div>
           <div>
             <label htmlFor="email">
               Email:
+              <br />
               <input
                 type="email"
                 name="email"
                 value={this.state.email}
                 onChange={this.handleInputChangeFor('email')}
+                className="input-login"
               />
             </label>
           </div>
@@ -105,6 +107,7 @@ class RegisterPage extends Component {
                 name="img_avatar"
                 value={this.state.img_avatar}
                 onChange={this.handleInputChangeFor('img_avatar')}
+                className="input-login"
               />
             </label>
           </div>
@@ -116,12 +119,13 @@ class RegisterPage extends Component {
                 name="description"
                 value={this.state.description}
                 onChange={this.handleInputChangeFor('description')}
+                className="input-login"
               />
             </label>
           </div>
           <div>
             <input
-              className="register"
+              className="submit-post-button"
               type="submit"
               name="submit"
               value="Register"

@@ -1,0 +1,16 @@
+.input-login {
+  border: 0px;
+  font-size: 22px;
+  font-weight: 200;
+  width: 230px;
+  border-bottom: 1px solid rgb(133, 133, 133);
+}
+
+.input-login:hover {
+  border: 0px;
+  font-size: 17px;
+  font-weight: 200;
+  width: 230px;
+  color: #000;
+  border-bottom: 1px solid #000;
+}

@@ -85,7 +85,7 @@ class CreatePost extends Component {
   render() {
     return (
       <div id="container">
-        <h3>Write An Article</h3>
+        <h1>Write An Article</h1>
         <pre>
           {/* {JSON.stringify(this.state.editorState)} */}
         </pre>

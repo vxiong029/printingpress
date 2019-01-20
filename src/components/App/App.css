@@ -7,8 +7,8 @@ body {
   float: right;
   padding: 10px;
   padding-right: 40px;
-  width: 45%;
-  height: 47%;
+  width: 44%;
+  height: 46%;
 }
 
 .logo-text {
@@ -38,13 +38,16 @@ form {
 }
 
 h1 {
-	color: #01c3e8;
-	padding: 5px;
+	color: #ffdd00;
+  padding: 5px;
+  font-size: 34px;
+  font-weight: 200;
 }
 
 h3, h6 {
   padding: 2px;
   margin: 0px;
+  font-size: 25px;
 }
 
 h2 {
@@ -139,7 +142,7 @@ input {
   background: #FFFFFF;
   text-align: left;
   /* border: 2px solid #000; */
-  margin-top: 20px;
+  margin-top: 55px;
   margin-left: 130px;
   font-size: 18px;
   font-weight: 250;
