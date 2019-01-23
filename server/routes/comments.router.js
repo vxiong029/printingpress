@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
                     AS "blog_post_id" FROM "comment_posts"
                     JOIN "blog_posts" ON "comment_posts".blog_posts_id = "blog_posts".id
                     JOIN "person" ON "comment_posts".person_id = "person".id
-                    WHERE "blog_posts".id = $1; `;
+                    WHERE "blog_posts".id = $1 ORDER BY "id" DESC; `;
 
   let id = req.params.id;
 

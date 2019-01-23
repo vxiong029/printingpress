@@ -33,7 +33,8 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
     "slate": "^0.44.9",
-    "slate-react": "^0.21.15"
+    "slate-react": "^0.21.15",
+    "supertest": "^3.4.2"
   },
   "scripts": {
     "start": "node server/server.js",
@@ -41,6 +42,7 @@
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "testServer": "jest server/test/*.test.js --forceExit",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
